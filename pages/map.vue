@@ -46,8 +46,8 @@ export default {
     async loadMap() {
       for (var i = 0; i < this.sentiers.length; i++) {
         const response = await fetch(this.sentiers[i].attributes.GeoJSON.data.attributes.url);
-        var test = await response.json()
-        this.data.features.push(test.features[0])
+        var res = await response.json()
+        this.data.features.push(res.features[0])
         this.data.features[i].properties = {
          "color" : this.sentiers[i].attributes.Couleur
         }
@@ -101,108 +101,108 @@ export default {
 
 <style lang="scss" scoped>
 .swiper {
-    height: calc(100vh - 70px);
-    .swiper-slide {
-      &.text {
-        font-size: 18px!important;
-        text-align: left!important;
-        height: auto;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 30px;
+  height: calc(100vh - 70px);
+  .swiper-slide {
+    &.text {
+      font-size: 18px!important;
+      text-align: left!important;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 30px;
 
-        > .content {
-          > .title {
-            margin: 0;
-            text-align: center;
-            margin-bottom: .75em;
-          }
+      > .content {
+        > .title {
+          margin: 0;
+          text-align: center;
+          margin-bottom: .75em;
+        }
 
-          > p, blockquote {
-            line-height: 2;
-            text-indent: 2em;
-          }
+        > p, blockquote {
+          line-height: 2;
+          text-indent: 2em;
+        }
 
-          blockquote {
-            padding: 1rem;
-            margin-left: 2em;
-            background-color: #ddd;
-          }
+        blockquote {
+          padding: 1rem;
+          margin-left: 2em;
+          background-color: #ddd;
         }
       }
     }
   }
+}
 
+#map { 
+  height: calc(100vh - 70px);
+  border-radius: 40px;
+  border: 5px solid rgba(6, 102, 100, 0.8);
+}
+
+.card {
+  padding: 20px;
+  background: #F1F1F1;
+  border-radius: 15px;
+
+  & .line {
+    width: 30px;
+    height: 3px;
+  }
+
+  & h1 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 25px;
+    color: rgba(6, 102, 100, 0.8);
+  }
+
+  & p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 25px;
+    text-align: justify;
+    color: #8D8D8D;
+  }
+}
+
+.card:hover {
+  background: #d8d8d8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 0
+  }
+  
   #map { 
-    height: calc(100vh - 70px);
-    border-radius: 40px;
-    border: 5px solid rgba(6, 102, 100, 0.8);
+    height: calc(50vh);
+    border-radius: 0;
+    border: none;
+    margin-bottom: 30px;
   }
 
   .card {
     padding: 20px;
-    background: #F1F1F1;
-    border-radius: 15px;
+    border-radius: 9px;
+    margin-right: 12px;
+    margin-left: 12px;
 
     & .line {
-      width: 30px;
-      height: 3px;
+      width: 20px;
     }
 
     & h1 {
-      font-style: normal;
       font-weight: 800;
-      font-size: 25px;
-      line-height: 25px;
-      color: rgba(6, 102, 100, 0.8);
+      font-size: 18px;
     }
 
     & p {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 17px;
-      line-height: 25px;
-      text-align: justify;
-      color: #8D8D8D;
+      font-size: 11px;
+      line-height: 15px;
     }
   }
-
-  .card:hover {
-    background: #d8d8d8;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 640px) {
-    .container {
-      padding: 0
-    }
-    
-    #map { 
-      height: calc(50vh);
-      border-radius: 0;
-      border: none;
-      margin-bottom: 30px;
-    }
-
-    .card {
-      padding: 20px;
-      border-radius: 9px;
-      margin-right: 12px;
-      margin-left: 12px;
-
-      & .line {
-        width: 20px;
-      }
-
-      & h1 {
-        font-weight: 800;
-        font-size: 18px;
-      }
-
-      & p {
-        font-size: 11px;
-        line-height: 15px;
-      }
-    }
-  }
+}
 </style>
