@@ -13,7 +13,7 @@ export const mutations = {
 }
 
 export const actions = {
-  getSentiers({commit}) {
+  getSentiers({commit, state}) {
     axios.get(strapi + 'sentiers?populate=*')
     .then((res) => {
       commit('setSentiers', res.data)
@@ -21,6 +21,14 @@ export const actions = {
     .catch((err) => {
       console.error(err)
     })
+    setTimeout(() => {
+      if (state.sentiers.length === 0) {
+        alert('Heroku dort la page sera actualisé automatiquement.')
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
+      }
+    }, 3000);
   },
 }
 
