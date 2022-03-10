@@ -2,6 +2,7 @@
   <div>
     <Nuxt-link to="/">Index</Nuxt-link>
     <Nuxt-link to="/map">Map</Nuxt-link>
+    <Nuxt-link to="/a-propos">A propos</Nuxt-link>
     <Nuxt />
   </div>
 </template>
