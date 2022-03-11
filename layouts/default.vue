@@ -1,8 +1,9 @@
 <template>
   <div>
     <Nuxt-link to="/">Index</Nuxt-link>
+    <Nuxt-link to="/sentiers">Sentiers</Nuxt-link>
     <Nuxt-link to="/map">Map</Nuxt-link>
-    <Nuxt-link to="/a-propos">A propos</Nuxt-link>
+    <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
     <Nuxt />
   </div>
 </template>
