@@ -90,10 +90,14 @@ export default {
     ...mapGetters('store',['sentiers'])
   },
   mounted() {
-    // J'impose un très léger délai à cette fonction pour être sûr qu'elle s'exécute dans le bon ordre.
-    setTimeout(() =>{
+    // Si les sentiers ne sont pas chargés, j'impose un très léger délai à cette fonction pour être sûr qu'elle s'exécute dans le bon ordre.
+    if (this.sentiers.length === 0) {
+      setTimeout(() =>{
+        this.loadMap()
+      },300)
+    } else {
       this.loadMap()
-    },300)
+    }
   }
 }
 </script>
