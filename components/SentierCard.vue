@@ -16,11 +16,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      distance: null,
-    };
-  },
+  data: () => ({
+    distance: "?",
+  }),
   props: {
     item: {
       type: Object,
@@ -30,14 +28,12 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    course: {},
     index: null,
   },
   methods: {
     getDistance() {
-
       try {
-          // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes)
+        // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes)
         var map = L.map(`${this.index}`).setView([45.837, 1.239], 16);
         L.tileLayer(
           "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA",
@@ -52,32 +48,39 @@ export default {
           }
         ).addTo(map);
 
-        // on récupère les coordonnées pour calculer la distance
+        // J'affiche le sentier sur la map.
+        L.geoJson(this.item.attributes.GeoJSON.dataMap, {
+          style: function (feature) {
+            // J'applique la bonne couleur sélectionnée.
+            switch (feature.properties.color) {
+              case "red":
+                return { color: "red" };
+              case "blue":
+                return { color: "blue" };
+              case "green":
+                return { color: "green" };
+              case "orange":
+                return { color: "orange" };
+              case "pink":
+                return { color: "pink" };
+              case "purple":
+                return { color: "purple" };
+              case "brown":
+                return { color: "brown" };
+              case "black":
+                return { color: "black" };
+              default:
+                return { color: "yellow" };
+            }
+          },
+        }).addTo(map);
 
-        /*const startLat = this.course.features[0].geometry.coordinates[0][1];
-        const startLong = this.course.features[0].geometry.coordinates[0][0];
-        const userLat = this.userPosition.position.lat;
-        const userLong = this.userPosition.position.long;*/
-
-        const startLat = 1.085
-        const startLong = 45.42
-        const userLat = 0.9
-        const userLong = 47.8
-
-        if (
-          startLat !== undefined &&
-          startLong !== undefined &&
-          userLat !== undefined &&
-          userLong !== undefined
-        ) {
-            // on transforme les variable en objet pour Leaflet
-          var latLongStart = L.latLng(startLat, startLong);
-          var latLongUser = L.latLng(userLat, userLong);
-          // on récupère la distance entre deux points
-          this.distance = latLongUser.distanceTo(latLongStart).toFixed(0);
+        // on récupère la distance entre deux points
+        if(this.item.distance !== -1){
+            this.distance = this.item.distance
         }
       } catch (e) {
-          console.error(e);
+        console.error(e);
       }
     },
   },

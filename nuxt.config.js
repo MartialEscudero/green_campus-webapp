@@ -42,6 +42,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://github.com/skyatura/vue-geolocation-api
+    'vue-geolocation-api/nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -78,6 +80,9 @@ export default {
     }
   },
 
+  geolocation:  {
+    watch: false,
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

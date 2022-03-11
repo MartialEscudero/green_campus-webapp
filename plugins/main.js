@@ -1,12 +1,15 @@
 import Vue from 'vue'
 
-//https://github.com/surmon-china/vue-awesome-swiper
+// https://github.com/surmon-china/vue-awesome-swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+// https://github.com/freearhey/vue2-filters
+import Vue2Filters from 'vue2-filters'
 
 // import style (<= Swiper 5.x)
 import 'swiper/css/swiper.css'
 
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+Vue.use(Vue2Filters)
 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
