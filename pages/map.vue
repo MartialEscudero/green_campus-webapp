@@ -28,7 +28,7 @@ export default {
     title: 'Carte',
   },
   data: () => ({
-    data : {
+    lines : {
       "type": "FeatureCollection",
       "features": [],
     },
@@ -43,14 +43,10 @@ export default {
     }
   }),
   methods:{
-    async loadMap() {
+    loadMap() {
+      // Je récupère toutes les coordonnées des sentiers.
       for (var i = 0; i < this.sentiers.length; i++) {
-        const response = await fetch(this.sentiers[i].attributes.GeoJSON.data.attributes.url);
-        var res = await response.json()
-        this.data.features.push(res.features[0])
-        this.data.features[i].properties = {
-         "color" : this.sentiers[i].attributes.Couleur
-        }
+        this.lines.features.push(this.sentiers[i].attributes.GeoJSON.dataMap)
       }
 
       var map = L.map("map").setView([45.837, 1.239], 16);
@@ -64,9 +60,9 @@ export default {
           accessToken: 'your.mapbox.access.token'
       }).addTo(map);
 
-      var Lines = this.data
-
-      L.geoJson(Lines, { style: function(feature) {
+      // J'affiche les sentiers sur la map.
+      L.geoJson(this.lines, { style: function(feature) {
+        // J'applique la bonne couleur sélectionnée.
         switch (feature.properties.color) {
           case 'red':
             return {color: "red"}
@@ -94,7 +90,10 @@ export default {
     ...mapGetters('store',['sentiers'])
   },
   mounted() {
-    this.loadMap()
+    // J'impose un très léger délai à cette fonction pour être sûr qu'elle s'exécute dans le bon ordre.
+    setTimeout(() =>{
+      this.loadMap()
+    },300)
   }
 }
 </script>

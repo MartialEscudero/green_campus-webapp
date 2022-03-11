@@ -9,6 +9,16 @@ export const state = () => ({
 export const mutations = {
   async setSentiers(state, args) {
     state.sentiers = args.data
+
+    // Je récupère le fichier geojson et je réinjecte son contenu dans l'Object sentier dans une nouvelle entrée dataMap aussi en injectant la couleur.
+    for (var i = 0; i < state.sentiers.length; i++) {
+      const response = await fetch(state.sentiers[i].attributes.GeoJSON.data.attributes.url);
+      var res = await response.json()
+      state.sentiers[i].attributes.GeoJSON.dataMap = (res.features[0])
+      state.sentiers[i].attributes.GeoJSON.dataMap.properties = {
+        "color" : state.sentiers[i].attributes.Couleur
+      }
+    }
   }
 }
 
