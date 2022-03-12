@@ -1,17 +1,28 @@
 <template>
-  <div>
-    <Nuxt-link to="/">Index</Nuxt-link>
-    <Nuxt-link to="/sentiers">Sentiers</Nuxt-link>
-    <Nuxt-link to="/map">Map</Nuxt-link>
-    <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
+  <v-app>
+    <div class="block">
+      <Nuxt-link to="/">Index</Nuxt-link>
+      <Nuxt-link to="/sentiers">Sentiers</Nuxt-link>
+      <Nuxt-link to="/map">Map</Nuxt-link>
+      <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
+    </div>
     <Nuxt />
-  </div>
+  </v-app>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 
 export default {
+  data: () => ({
+      drawer: false,
+      group: null,
+    }),
+    watch: {
+      group () {
+        this.drawer = false
+      },
+    },
   methods: {
     ...mapActions('store', ['getSentiers']),
   },
