@@ -4,33 +4,47 @@
     <div class="flex items-center">
       <div
         class="line mr-5"
-        :style="{ 'background-color': item.attributes.Couleur }"
+        :style="{ 'background-color': sentier.attributes.Couleur }"
       ></div>
       <h1>{{ distance }} m</h1>
     </div>
     <p class="mt-3">
-      {{ item.attributes.Description.slice(0, 250) + " ..." }}
+      {{ sentier.attributes.Description.slice(0, 250) + " ..." }}
     </p>
   </div>
 </template>
 
 <script>
+var turf = require("@turf/turf");
 export default {
   data: () => ({
     distance: "?",
+    userPosition: {},
   }),
   props: {
-    item: {
-      type: Object,
-      default: () => ({}),
-    },
-    userPosition: {
+    sentier: {
       type: Object,
       default: () => ({}),
     },
     index: null,
   },
   methods: {
+      startInterval: function () {
+      setInterval(() => {
+        this.userPosition = this.$geolocation.coords
+        console.log(this.userPosition)
+        this.updateDistance()
+      }, 1000);
+    },
+    updateDistance() {
+        const sentierDébut = this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
+        // si toutes les variables sont définies, on calcule la distance
+        if (sentierDébut !== null && this.userPosition !== null) {
+          var to = turf.point(sentierDébut);
+          var from = turf.point([this.userPosition.longitude, this.userPosition.latitude]);
+          this.distance = Math.round(turf.distance(from, to, { units: "meters" }));
+        }
+    },
     getDistance() {
       try {
         // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes)
@@ -49,7 +63,7 @@ export default {
         ).addTo(map);
 
         // J'affiche le sentier sur la map.
-        L.geoJson(this.item.attributes.GeoJSON.dataMap, {
+        L.geoJson(this.sentier.attributes.GeoJSON.dataMap, {
           style: function (feature) {
             // J'applique la bonne couleur sélectionnée.
             switch (feature.properties.color) {
@@ -76,8 +90,8 @@ export default {
         }).addTo(map);
 
         // on récupère la distance entre deux points
-        if(this.item.distance !== -1){
-            this.distance = this.item.distance
+        if(this.sentier.distance !== -1){
+            this.distance = this.sentier.distance
         }
       } catch (e) {
         console.error(e);
@@ -86,6 +100,8 @@ export default {
   },
   mounted() {
     this.getDistance();
+    this.startInterval();
+    console.info(this.sentier)
   },
 };
 </script>

@@ -33,31 +33,28 @@
     <div
       class="content"
       v-for="(sentier, index) in orderSentiers(mesSentiers)"
-      :key="sentier.item"
+      :key="sentier.id"
     >
       <!-- On crée un composant pour chaque sentier et on transmet les infos du sentier -->
-      <SentierCard
-        :item="sentier"
-        :index="index"
-      ></SentierCard>
+      <SentierCard :sentier="sentier" :index="index"></SentierCard>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Vue2Filters from 'vue2-filters'
-var turf = require('@turf/turf');
+import Vue2Filters from "vue2-filters";
+var turf = require("@turf/turf");
 
 export default {
-    //pour utiliser des méthodes de tri directement dans la boucle v-for
+  //pour utiliser des méthodes de tri directement dans la boucle v-for
   mixins: [Vue2Filters.mixin],
   head: {
     title: "Sentiers à proximité",
   },
   async created() {
-    await this.getPosition();
-    this.addDistance();
+    this.enableLocation();
+    await this.getMesSentiers();
+    //this.startInterval();
   },
   data: () => ({
     currentOrder: "proche",
@@ -65,85 +62,108 @@ export default {
     mesSentiers: [],
   }),
   methods: {
-    compareDistance(a, b){
-        return a.distance - b.distance
+    startInterval: function () {
+      setInterval(() => {
+        this.userPosition = this.$geolocation.coords
+        console.log(this.userPosition)
+        this.updateDistance(this.userPosition)
+        console.log(this.mesSentiers)
+      }, 1000);
     },
-    // pour trierles sentiers
+    compareDistance(a, b) {
+      return a.distance - b.distance;
+    },
+    // pour trier les sentiers
     orderSentiers(items) {
-        if(this.currentOrder === "proche") {
-            // copie par valeur et non par référence
-            var itemsbis = JSON.parse(JSON.stringify(items))
-            // trie les sentiers selon une fonction personnalisée
-            const filtered = itemsbis.sort(function (a, b){
-            return a.distance - b.distance
-        })
-        console.log(filtered)
-        return filtered
-            //return items.filter(this.compareDistance)
-        }
-        return items
+      if (this.currentOrder === "proche") {
+        // copie par valeur et non par référence
+        var itemsbis = JSON.parse(JSON.stringify(items));
+        // trie les sentiers selon une fonction personnalisée
+        const filtered = itemsbis.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+        return filtered;
+      }
+      return items;
     },
-    addDistance() {
-      this.mesSentiers = this.sentiers;
+    addDistance(Sentiers) {
+      //this.mesSentiers = this.sentiers;
+      // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
+      for (var i = 0; i < Sentiers.length; i++) {
+        // récupère le point de départ du sentier (le premier point du tracé)
+        const sentierDébut =
+          Sentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0];
+        // récupère la position de l'utilisateur
+        const coords = this.$geolocation.coords;
+
+        // si toutes les variables sont définies, on calcule la distance
+        if (sentierDébut !== null && coords !== null) {
+          var to = turf.point(sentierDébut);
+          var from = turf.point([coords.longitude, coords.latitude]);
+          Sentiers[i].distance = Math.round(
+            turf.distance(from, to, { units: "meters" })
+          );
+        } else {
+          // Sinon on met à -1 pour afficher un ? dans le composant
+          Sentiers[i].distance = -1;
+        }
+      }
+      return Sentiers;
+    },
+    updateDistance(coords) {
       // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
       for (var i = 0; i < this.mesSentiers.length; i++) {
         // récupère le point de départ du sentier (le premier point du tracé)
-        const sentierDébut = this.mesSentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0]
-        // récupère la position de l'utilisateur
-        const coords =this.$geolocation.coords
+        const sentierDébut =
+          this.mesSentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0];
 
         // si toutes les variables sont définies, on calcule la distance
-        if( sentierDébut !== null && coords !== null ) {
-            var to = turf.point(sentierDébut)
-            var from = turf.point([coords.longitude, coords.latitude])
-            this.mesSentiers[i].distance = Math.round(turf.distance(from, to, {units: 'meters'}))
+        if (sentierDébut !== null && coords !== null) {
+          var to = turf.point(sentierDébut);
+          var from = turf.point([coords.longitude, coords.latitude]);
+          this.mesSentiers[i] = { ...this.mesSentiers[i], distance: Math.round(turf.distance(from, to, { units: "meters" })) };
         } else {
-            // Sinon on met à -1 pour afficher un ? dans le composant
-            this.mesSentiers[i].distance = -1
-        }     
-
+          // Sinon on met à -1 pour afficher un ? dans le composant
+          this.mesSentiers[i].distance = -1;
+        }
       }
-      console.log(this.mesSentiers)
     },
-    enableLocation() {  
-        // active la géolocalisation sur tout le site
+    enableLocation() {
+      // active la géolocalisation sur tout le site
       this.$geolocation.watch = true;
     },
     getPosition() {
-      const coords = this.$geolocation.coords;
-      //console.log(coords);
-      this.userPosition = coords;
+      this.userPosition = this.$geolocation.coords;
     },
-    
+    async getMesSentiers() {
+      const response = await this.$axios.get(
+        "https://admingreencampus.herokuapp.com/api/" + "sentiers?populate=%2A"
+      );
+      var dtoSentiers = response.data.data;
+
+      // Je récupère le fichier geojson et je réinjecte son contenu dans l'Object sentier dans une nouvelle entrée dataMap aussi en injectant la couleur.
+      for (var i = 0; i < dtoSentiers.length; i++) {
+        const response = await fetch(
+          dtoSentiers[i].attributes.GeoJSON.data.attributes.url
+        );
+        var res = await response.json();
+        dtoSentiers[i].attributes.GeoJSON.dataMap = res.features[0];
+        dtoSentiers[i].attributes.GeoJSON.dataMap.properties = {
+          color: dtoSentiers[i].attributes.Couleur,
+        };
+      }
+      this.getPosition();
+      this.mesSentiers = this.addDistance(dtoSentiers);
+    },
   },
   computed: {
-    ...mapGetters("store", ["sentiers"]),
-    // une autre fonction pour trier les sentiers, non fonctionnel
-    sortedOrder: function (){
-        console.log(this.mesSentiers)
-        return this.mesSentiers.filter(function (a, b){
-            return a.distance < b.distance
-        })
-    }
-  },
-  mounted() {
-    this.enableLocation();
-    // Si les sentiers ne sont pas chargés, j'impose un très léger délai à cette fonction pour être sûr qu'elle s'exécute dans le bon ordre.
-    if (this.sentiers.length === 0) {
-      setTimeout(() => {
-        this.getPosition();
-      }, 3000);
-    } else {
-      this.getPosition();
-    }
+
   },
   // pour changer l'ordre de tri des sentiers WIP
   watch: {
-    currentOrder: function (newOrder, oldOrder) {
+    currentOrder: function (newOrder) {
       this.currentOrder = newOrder;
     },
   },
 };
 </script>
-
-
