@@ -3,6 +3,7 @@ import axios from 'axios'
 const strapi = "https://admingreencampus.herokuapp.com/api/"
 
 export const state = () => ({
+  lang : "fr",
   sentiers: [],
 })
 
@@ -24,7 +25,7 @@ export const mutations = {
 
 export const actions = {
   getSentiers({commit, state}) {
-    axios.get(strapi + 'sentiers?populate=*')
+    axios.get(strapi + 'sentiers?populate=%2A&locale='+ state.lang)
     .then((res) => {
       commit('setSentiers', res.data)
     })
