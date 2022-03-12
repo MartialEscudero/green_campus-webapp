@@ -3,6 +3,7 @@ import axios from 'axios'
 const strapi = "https://admingreencampus.herokuapp.com/api/"
 
 export const state = () => ({
+  heroku: false,
   lang : "fr",
   sentiers: [],
 })
@@ -20,6 +21,10 @@ export const mutations = {
         "color" : state.sentiers[i].attributes.Couleur
       }
     }
+  },
+
+  setHerokuDialog(state) {
+    state.heroku = true
   }
 }
 
@@ -34,10 +39,10 @@ export const actions = {
     })
     setTimeout(() => {
       if (state.sentiers.length === 0) {
-        alert('Heroku dort la page sera actualisé automatiquement.')
+        commit('setHerokuDialog')
         setTimeout(() => {
           location.reload();
-        }, 3000);
+        }, 30000);
       }
     }, 3000);
   },
@@ -45,4 +50,6 @@ export const actions = {
 
 export const getters = {
   sentiers : state => state.sentiers,
+  lang : state => state.lang,
+  heroku : state => state.heroku,
 }

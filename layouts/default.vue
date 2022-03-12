@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <DialogHeroku />
     <div class="block">
       <Nuxt-link to="/">Index</Nuxt-link>
       <Nuxt-link to="/sentiers">Sentiers</Nuxt-link>
