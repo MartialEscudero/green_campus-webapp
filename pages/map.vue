@@ -2,20 +2,22 @@
   <div class="container mx-auto md:grid md:gap-28 xl:grid-cols-2">
     <div id="map"></div>
     <div>
-      <swiper class="swiper" :options="swiperOption">
-        <swiper-slide class="text">
-          <div class="content">
-            <div class="card mb-10 hover:scale-105 transition ease-in-out" v-for="sentier in sentiers" :key="sentier.item">
-              <div class="flex items-center">
-                <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}" ></div>
-                <h1>{{ sentier.attributes.Nom }}</h1>
+      <client-only>
+        <swiper class="swiper" :options="swiperOption">
+          <swiper-slide class="text">
+            <div class="content">
+              <div class="card mb-10 hover:scale-105 transition ease-in-out" v-for="sentier in sentiers" :key="sentier.item">
+                <div class="flex items-center">
+                  <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
+                  <h1>{{ sentier.attributes.Nom }}</h1>
+                </div>
+                <p class="mt-3">{{ sentier.attributes.Description.slice(0,250) + " ..." }}</p>
               </div>
-              <p class="mt-3">{{ sentier.attributes.Description.slice(0,250) + " ..." }}</p>
             </div>
-          </div>
-        </swiper-slide>
-        <div class="swiper-scrollbar" slot="scrollbar"></div>
-      </swiper>
+          </swiper-slide>
+          <div class="swiper-scrollbar" slot="scrollbar"></div>
+        </swiper>
+      </client-only>
     </div>
   </div>
 </template>
