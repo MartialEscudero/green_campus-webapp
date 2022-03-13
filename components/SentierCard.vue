@@ -5,7 +5,8 @@
       <div>
         <div class="flex items-center">
           <v-icon class="icon">mdi-map-marker</v-icon>
-          <h1>{{ distance }} m</h1>
+          <h1 v-if="distance < 1000">{{ distance }} m</h1>
+          <h1 v-else-if="distance >= 1000">{{ distance/1000 }} km</h1>
         </div>
         <div class="flex items-center">
           <h2>{{ sentier.attributes.Nom }}</h2>
@@ -36,7 +37,7 @@ export default {
     startInterval: function () {
       setInterval(() => {
         this.userPosition = this.$geolocation.coords;
-        console.log(this.userPosition);
+        //console.log(this.userPosition);
         this.updateDistance();
       }, 1000);
     },
