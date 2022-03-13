@@ -1,16 +1,20 @@
 <template>
-  <div class="card mb-10 hover:scale-105 transition ease-in-out">
-    <div v-bind:id="index" class="MACARTE"></div>
-    <div class="flex items-center">
-      <div
-        class="line mr-5"
-        :style="{ 'background-color': sentier.attributes.Couleur }"
-      ></div>
-      <h1>{{ distance }} m</h1>
+  <div class="card h-full hover:scale-105 transition ease-in-out">
+    <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
+      <div v-bind:id="index" class="MACARTE hidden md:block"></div>
+      <div>
+        <div class="flex items-center">
+          <v-icon class="icon">mdi-map-marker</v-icon>
+          <h1>{{ distance }} m</h1>
+        </div>
+        <div class="flex items-center">
+          <h2>{{ sentier.attributes.Nom }}</h2>
+        </div>
+        <p class="mt-3">
+          {{ sentier.attributes.Description.slice(0, 250) + " ..." }}
+        </p>
+      </div>
     </div>
-    <p class="mt-3">
-      {{ sentier.attributes.Description.slice(0, 250) + " ..." }}
-    </p>
   </div>
 </template>
 
@@ -29,21 +33,27 @@ export default {
     index: null,
   },
   methods: {
-      startInterval: function () {
+    startInterval: function () {
       setInterval(() => {
-        this.userPosition = this.$geolocation.coords
-        console.log(this.userPosition)
-        this.updateDistance()
+        this.userPosition = this.$geolocation.coords;
+        console.log(this.userPosition);
+        this.updateDistance();
       }, 1000);
     },
     updateDistance() {
-        const sentierDébut = this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
-        // si toutes les variables sont définies, on calcule la distance
-        if (sentierDébut !== null && this.userPosition !== null) {
-          var to = turf.point(sentierDébut);
-          var from = turf.point([this.userPosition.longitude, this.userPosition.latitude]);
-          this.distance = Math.round(turf.distance(from, to, { units: "meters" }));
-        }
+      const sentierDébut =
+        this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
+      // si toutes les variables sont définies, on calcule la distance
+      if (sentierDébut !== null && this.userPosition !== null) {
+        var to = turf.point(sentierDébut);
+        var from = turf.point([
+          this.userPosition.longitude,
+          this.userPosition.latitude,
+        ]);
+        this.distance = Math.round(
+          turf.distance(from, to, { units: "meters" })
+        );
+      }
     },
     getDistance() {
       try {
@@ -90,8 +100,8 @@ export default {
         }).addTo(map);
 
         // on récupère la distance entre deux points
-        if(this.sentier.distance !== -1){
-            this.distance = this.sentier.distance
+        if (this.sentier.distance !== -1) {
+          this.distance = this.sentier.distance;
         }
       } catch (e) {
         console.error(e);
@@ -101,7 +111,7 @@ export default {
   mounted() {
     this.getDistance();
     this.startInterval();
-    console.info(this.sentier)
+    console.info(this.sentier);
   },
 };
 </script>
@@ -118,11 +128,32 @@ export default {
   }
 
   & h1 {
+    padding: 10px 10px 30px 5px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 35px;
+    line-height: 25px;
+    text-align: justify;
+    color: #bf7300;
+  }
+
+  & h2 {
     font-style: normal;
     font-weight: 800;
     font-size: 25px;
     line-height: 25px;
+    text-align: justify;
     color: rgba(6, 102, 100, 0.8);
+  }
+
+  & .icon {
+    padding: 10px 0px 30px 0px;
+    margin-left: -10px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 25px;
+    color: #bf7300;
   }
 
   & p {
@@ -144,39 +175,5 @@ export default {
 .card:hover {
   background: #d8d8d8;
   cursor: pointer;
-}
-
-@media screen and (max-width: 640px) {
-  .container {
-    padding: 0;
-  }
-
-  #map {
-    height: calc(50vh);
-    border-radius: 0;
-    border: none;
-    margin-bottom: 30px;
-  }
-
-  .card {
-    padding: 20px;
-    border-radius: 9px;
-    margin-right: 12px;
-    margin-left: 12px;
-
-    & .line {
-      width: 20px;
-    }
-
-    & h1 {
-      font-weight: 800;
-      font-size: 18px;
-    }
-
-    & p {
-      font-size: 11px;
-      line-height: 15px;
-    }
-  }
 }
 </style>
