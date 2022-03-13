@@ -11,7 +11,7 @@
                   <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                   <h1>{{ sentier.attributes.Nom }}</h1>
                 </div>
-                <p class="mt-3">{{ sentier.attributes.Description.slice(0,250) + " ..." }}</p>
+                <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
               </div>
             </div>
           </swiper-slide>
@@ -148,6 +148,7 @@ export default {
   padding: 20px;
   background: #F1F1F1;
   border-radius: 15px;
+  max-height: 150px;
 
   & .line {
     width: 30px;
@@ -162,7 +163,7 @@ export default {
     color: rgba(6, 102, 100, 0.8);
   }
 
-  & p {
+  & #markdown {
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -194,6 +195,7 @@ export default {
     border-radius: 9px;
     margin-right: 12px;
     margin-left: 12px;
+    max-height: 200px;
 
     & .line {
       width: 20px;
@@ -204,7 +206,7 @@ export default {
       font-size: 18px;
     }
 
-    & p {
+    & #markdown {
       font-size: 11px;
       line-height: 15px;
     }
