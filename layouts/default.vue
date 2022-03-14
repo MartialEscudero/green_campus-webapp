@@ -5,7 +5,8 @@
       <Nuxt-link to="/">Index</Nuxt-link> -
       <Nuxt-link to="/sentiers">Sentiers</Nuxt-link> -
       <Nuxt-link to="/map">Map</Nuxt-link> -
-      <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
+      <Nuxt-link to="/a-propos">A-Propos</Nuxt-link> - 
+      <Nuxt-link to="/point-interet/OKYZTFHEJC">Exemple-POI</Nuxt-link>
     </div>
     <Nuxt />
   </v-app>
