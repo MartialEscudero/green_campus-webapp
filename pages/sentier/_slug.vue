@@ -86,6 +86,10 @@ export default {
       var res = await response.json()
       this.line.features.push(res.features[0])
 
+      for (var i = 0; i < this.sentier.points_interet.data.length; i++) {
+        this.line.features.push(this.sentier.points_interet.data[i].attributes.MarkerGeoJSON)
+      }
+
       L.geoJson(this.line,{}).addTo(map);
     }
   },
