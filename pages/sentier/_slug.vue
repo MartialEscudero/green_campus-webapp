@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <PiDialog :piDialog.sync="piDialog" :piSelected="piSelected" />
     <h1>{{sentier.Nom}}</h1>
     <div class="mx-auto md:grid xl:grid-cols-2">
       <div id="map"></div>
@@ -11,7 +12,7 @@
     </div>
     <div class="mt-10" v-for="points_interet in sentier.points_interet" :key="points_interet.item">
       <h2>LES POINTS D'INTÉRÊTS</h2>
-      <div class="mx-auto md:grid md:gap-28 md:grid-cols-2">
+      <div class="mx-auto md:grid md:gap-16 md:grid-cols-2">
         <div class="card" v-for="pi in points_interet" :key="pi.item">
           <div v-if="!pi.attributes.Audio.data">
             <div v-for="img in pi.attributes.Image" :key="img.item">
@@ -29,7 +30,7 @@
             <h3>{{pi.attributes.Nom}}</h3>
             <vue-markdown v-if="pi.attributes.Description" id="markdown" class="text-justify" :source="pi.attributes.Description.slice(0,200) + '...'"></vue-markdown>
           </div>
-          <button>LIRE PLUS</button>
+          <button @click="piDialog = true, piSelected = pi">LIRE PLUS</button>
         </div>
       </div>
     </div>
@@ -62,6 +63,8 @@ export default {
       "type": "FeatureCollection",
       "features": [],
     },
+    piDialog : false,
+    piSelected : null
   }),
   methods: {
     ...mapActions('store',['getSentier']),
@@ -75,6 +78,7 @@ export default {
           id: 'mapbox/streets-v11',
           tileSize: 512,
           zoomOffset: -1,
+          zIndex: -1,
           accessToken: 'your.mapbox.access.token'
       }).addTo(map);
 
@@ -92,7 +96,7 @@ export default {
     this.getSentier(this.$route.params.slug)
     setTimeout(() =>{
       this.loadMap()
-    },500)
+    },300)
   }
 }
 </script>
