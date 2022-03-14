@@ -1,22 +1,24 @@
 <template>
-  <div class="card h-full hover:scale-105 transition ease-in-out">
-    <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
-      <div v-bind:id="index" class="MACARTE hidden md:block"></div>
-      <div>
-        <div class="flex items-center">
-          <v-icon class="icon">mdi-map-marker</v-icon>
-          <h1 v-if="distance < 1000">{{ distance }} m</h1>
-          <h1 v-else-if="distance >= 1000">{{ distance/1000 }} km</h1>
+  <Nuxt-link :to="'/sentier/' + sentier.attributes.Slug">
+    <div class="card h-full hover:scale-105 transition ease-in-out">
+      <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
+        <div v-bind:id="index" class="MACARTE hidden md:block"></div>
+        <div>
+          <div class="flex items-center">
+            <v-icon class="icon">mdi-map-marker</v-icon>
+            <h1 v-if="distance < 1000">{{ distance }} m</h1>
+            <h1 v-else-if="distance >= 1000">{{ distance/1000 }} km</h1>
+          </div>
+          <div class="flex items-center">
+            <h2>{{ sentier.attributes.Nom }}</h2>
+          </div>
+          <p class="mt-3">
+            {{ sentier.attributes.Description.slice(0, 250) + " ..." }}
+          </p>
         </div>
-        <div class="flex items-center">
-          <h2>{{ sentier.attributes.Nom }}</h2>
-        </div>
-        <p class="mt-3">
-          {{ sentier.attributes.Description.slice(0, 250) + " ..." }}
-        </p>
       </div>
     </div>
-  </div>
+  </Nuxt-link>
 </template>
 
 <script>
