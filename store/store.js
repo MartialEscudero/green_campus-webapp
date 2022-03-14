@@ -6,6 +6,7 @@ export const state = () => ({
   heroku: false,
   lang : "fr",
   sentiers: [],
+  sentier: []
 })
 
 export const mutations = {
@@ -23,6 +24,10 @@ export const mutations = {
     }
   },
 
+  setSentier(state, args) {
+    state.sentier = args.data[0].attributes
+  },
+
   setHerokuDialog(state) {
     state.heroku = true
   }
@@ -30,7 +35,7 @@ export const mutations = {
 
 export const actions = {
   getSentiers({commit, state}) {
-    axios.get(strapi + 'sentiers?populate=%2A&locale='+ state.lang)
+    axios.get(strapi + 'sentiers?populate=%2A&locale=' + state.lang)
     .then((res) => {
       commit('setSentiers', res.data)
     })
@@ -46,10 +51,21 @@ export const actions = {
       }
     }, 3000);
   },
+
+  getSentier({commit}, item) {
+    axios.get(strapi + 'sentiers?filters[Slug][$eq]=' + item + '&populate[0]=points_interet&populate[1]=GeoJSON&populate[2]=points_interet.Image&populate[3]=points_interet.Audio&populate[4]=Media')
+    .then((res) => {
+      commit('setSentier', res.data)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  }
 }
 
 export const getters = {
   sentiers : state => state.sentiers,
+  sentier : state => state.sentier,
   lang : state => state.lang,
   heroku : state => state.heroku,
 }

@@ -1,5 +1,13 @@
+* {
+  font-family: 'Roboto';
+}
+
 #markdown li::before {
   content: "• ";
   margin-right: .3rem;
   float: left;
+}
+
+.v-dialog {
+  z-index: 99 !important;
 }
