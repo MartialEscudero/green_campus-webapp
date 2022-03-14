@@ -5,8 +5,8 @@
       class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       v-model="currentOrder"
     >
-      <option value="proche">Le plus proche</option>
-      <option value="court">Le plus court</option>
+      <option selected value="proche">Le sentier le plus proche</option>
+      <option value="court">Le sentier le plus court</option>
     </select>
     <!-- Grille des sentiers -->
     <div class="inline-grid grid gap-8 grid-cols-1 lg:grid-cols-2">
@@ -55,6 +55,7 @@ export default {
     },
     // pour trier les sentiers
     orderSentiers(items) {
+      // tri par distance entre début du sentier et position de l'utilisateur
       if (this.currentOrder === "proche") {
         // copie par valeur et non par référence
         var itemsbis = JSON.parse(JSON.stringify(items));
@@ -64,15 +65,23 @@ export default {
         });
         return filtered;
       }
+      // tri par longueur du sentier
+      if (this.currentOrder === "court") {
+        // copie par valeur et non par référence
+        var itemsbis = JSON.parse(JSON.stringify(items));
+        // trie les sentiers selon une fonction personnalisée
+        const filtered = itemsbis.sort(function (a, b) {
+          return a.length - b.length;
+        });
+        return filtered;
+      }
       return items;
     },
     addDistance(Sentiers) {
-      //this.mesSentiers = this.sentiers;
       // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
       for (var i = 0; i < Sentiers.length; i++) {
         // récupère le point de départ du sentier (le premier point du tracé)
-        const sentierDébut =
-          Sentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0];
+        const sentierDébut = Sentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0];
         // récupère la position de l'utilisateur
         const coords = this.$geolocation.coords;
 
@@ -87,6 +96,15 @@ export default {
           // Sinon on met à -1 pour afficher un ? dans le composant
           Sentiers[i].distance = -1;
         }
+
+        // récupère tous les points du tracé pour calculer sa longueur
+        const line = turf.lineString(
+          Sentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates
+        );
+        const length = turf.length(line, { units: "meters" });
+
+        // ajoute la longueur du sentier
+        Sentiers[i].length = length;
       }
       return Sentiers;
     },
@@ -156,7 +174,7 @@ h1 {
   font-weight: 800;
   font-size: 35px;
   line-height: 41px;
-
+  padding: 50px 0px;
   color: rgba(6, 102, 100, 0.8);
 }
 
