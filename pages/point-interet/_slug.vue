@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="this.pi.Nom" class="mx-auto md:grid md:gap-28 xl:grid-cols-2">
+    <div v-if="poi" class="mx-auto md:grid md:gap-28 md:grid-cols-2">
       <client-only>
       <div>
         <v-carousel
@@ -9,7 +9,7 @@
           show-arrows-on-hover
         >
           <v-carousel-item
-            v-for="(slide, i) in this.pi.Image[0]"
+            v-for="(slide, i) in this.poiMedia.Image[0]"
             :key="i"
             :src="slide.attributes.url"
           >
@@ -17,14 +17,13 @@
         </v-carousel>
       </div>
       <div>
-        <h1>{{POI.Nom}}</h1>
-        <vue-markdown id="markdown" class="text-justify mt-5" :source="POI.Description"></vue-markdown>
-        <div v-if="this.pi.Audio.length > 1">
-          <div v-for="audio in this.pi.Audio" :key="audio.item">
+        <h1>{{poi.Nom}}</h1>
+        <vue-markdown id="markdown" class="text-justify mt-5" :source="poi.Description"></vue-markdown>
+        <div v-if="this.poiMedia.Audio[0]">
+          <div v-for="audio in this.poiMedia.Audio" :key="audio.item">
             <audio controls :src="audio[0].attributes.url"></audio>
           </div>
         </div>
-        
       </div>
       </client-only>
     </div>
@@ -35,33 +34,31 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  head: {
-    title: "Point d'intérêt",
+  head() {
+    return {
+      title: this.poi.Nom,
+    }
   },
   data: () => ({
-    pi: {
-      Nom: null,
-      Description: null,
+    poiMedia: {
       Image: [],
-      Audio: [] 
+      Audio: []
     }
   }),
   methods: {
-    ...mapActions('store',['getPOI']),
-    setPOI() {
-      this.pi.Nom = this.POI.Nom
-      this.pi.Description = this.POI.Description
-      this.pi.Image.push(this.POI.Image.data)
-      this.pi.Audio.push(this.POI.Audio.data)
+    ...mapActions('store',['getPoi']),
+    setPoi() {
+      this.poiMedia.Image.push(this.poi.Image.data)
+      this.poiMedia.Audio.push(this.poi.Audio.data)
     }
   },
   computed: {
-    ...mapGetters('store',['POI']),
+    ...mapGetters('store',['poi']),
   },
   mounted() {
-    this.getPOI(this.$route.params.slug)
+    this.getPoi(this.$route.params.slug)
     setTimeout(() =>{
-      this.setPOI()
+      this.setPoi()
     },300)
   }
 }

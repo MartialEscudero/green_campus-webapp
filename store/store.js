@@ -7,7 +7,7 @@ export const state = () => ({
   lang : "fr",
   sentiers: [],
   sentier: [],
-  POI: [],
+  poi: [],
 })
 
 export const mutations = {
@@ -29,8 +29,8 @@ export const mutations = {
     state.sentier = args.data[0].attributes
   },
 
-  setPOI(state, args) {
-    state.POI = args.data[0].attributes
+  setPoi(state, args) {
+    state.poi = args.data[0].attributes
   },
 
   setHerokuDialog(state) {
@@ -67,10 +67,10 @@ export const actions = {
     })
   },
 
-  getPOI({commit}, item) {
-    axios.get(strapi + 'points-interet?populate=%2A&filters[UUID][$eq]=' + item)
+  getPoi({commit, state}, item) {
+    axios.get(strapi + 'points-interet?populate=%2A&filters[UUID][$eq]=' + item + '&locale=' + state.lang)
     .then((res) => {
-      commit('setPOI', res.data)
+      commit('setPoi', res.data)
     })
     .catch((err) => {
       console.error(err)
@@ -81,7 +81,7 @@ export const actions = {
 export const getters = {
   sentiers : state => state.sentiers,
   sentier : state => state.sentier,
-  POI : state => state.POI,
+  poi : state => state.poi,
   lang : state => state.lang,
   heroku : state => state.heroku,
 }
