@@ -19,7 +19,7 @@
       </div>
     </div>
     <!-- Grille des sentiers -->
-    <div class="inline-grid grid gap-8 grid-cols-1 lg:grid-cols-2">
+    <div class="inline-grid gap-8 grid-cols-1 lg:grid-cols-2">
       <div
         v-for="(sentier, index) in orderSentiers"
         :key="sentier.id"

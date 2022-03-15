@@ -55,9 +55,6 @@ export default {
     },
     piSelected: Object,
   },
-  data: () => ({
-
-  }),
   methods: {
     close() { 
       this.$emit('update:piDialog', false) 
