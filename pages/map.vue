@@ -6,12 +6,16 @@
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide class="text">
             <div class="content">
-              <div class="card mb-10 hover:scale-105 transition ease-in-out" v-for="sentier in sentiers" :key="sentier.item">
-                <div class="flex items-center">
-                  <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
-                  <h1>{{ sentier.attributes.Nom }}</h1>
+              <div v-for="sentier in sentiers" :key="sentier.item">
+                <Nuxt-link :to="'/sentier/' + sentier.attributes.Slug">
+                <div class="card mb-10 hover:scale-105 transition ease-in-out">
+                  <div class="flex items-center">
+                    <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
+                    <h1>{{ sentier.attributes.Nom }}</h1>
+                  </div>
+                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
                 </div>
-                <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
+                </Nuxt-link>
               </div>
             </div>
           </swiper-slide>

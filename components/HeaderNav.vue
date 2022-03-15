@@ -21,6 +21,10 @@
             <v-btn text>
                 <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
             </v-btn>
+
+            <v-btn text>
+                <Nuxt-link to="/point-interet/OKYZTFHEJC">Exemple-POI</Nuxt-link>
+            </v-btn>
         </v-toolbar-items>
         </v-toolbar>
     </v-container>

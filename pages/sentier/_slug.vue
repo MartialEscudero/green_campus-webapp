@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <PiDialog :piDialog.sync="piDialog" :piSelected="piSelected" />
+    <DialogPoi :piDialog.sync="piDialog" :piSelected="piSelected" />
     <h1>{{sentier.Nom}}</h1>
     <div class="mx-auto md:grid xl:grid-cols-2">
       <div id="map"></div>
@@ -55,8 +55,10 @@ import 'vue-horizontal-scroll/dist/vue-horizontal-scroll.css'
 
 export default {
   components: {HorizontalScroll},
-  head: {
-    title: 'Sentier',
+  head() {
+    return {
+      title: this.sentier.Nom,
+    }
   },
   data: () => ({
     line : {
