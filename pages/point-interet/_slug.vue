@@ -47,6 +47,7 @@ export default {
   }),
   methods: {
     ...mapActions('store',['getPoi']),
+    
     setPoi() {
       this.poiMedia.Image.push(this.poi.Image.data)
       this.poiMedia.Audio.push(this.poi.Audio.data)
@@ -57,6 +58,7 @@ export default {
   },
   mounted() {
     this.getPoi(this.$route.params.slug)
+
     setTimeout(() =>{
       this.setPoi()
     },300)

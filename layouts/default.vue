@@ -13,19 +13,13 @@ import HeaderNav from '@/components/HeaderNav'
 export default {
   components: { HeaderNav },
   data: () => ({
-      drawer: false,
-      group: null,
-    }),
-    watch: {
-      group () {
-        this.drawer = false
-      },
-    },
+  }),
   methods: {
-    ...mapActions('store', ['getSentiers']),
+    ...mapActions('store', ['getSentiers','getMultilingual']),
   },
   mounted() {
-    this.getSentiers()
+    this.getSentiers(),
+    this.getMultilingual()
   }
 }
 </script>

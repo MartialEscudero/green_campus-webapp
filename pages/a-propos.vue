@@ -1,37 +1,38 @@
 <template>
-  <div class="container">
-    <h1>À PROPOS DE GREEN CAMPUS</h1>
+  <div v-if="multilingual.apropos" class="container">
+    <h1>{{multilingual.apropos[0]}}</h1>
     <div class="bloc">
-      <h2>LE CONCEPT</h2>
+      <h2>{{multilingual.apropos[1]}}</h2>
       <p class="text">
-        Le projet que doivent réaliser les étudiants est un projet de valorisation du campus de La Borie au travers de la création d’un parcours de déambulation des usagers du campus, mais également de visiteurs et/ou de citoyens de la ville de Limoges et de l’agglomération de Limoges. 
+        <span>{{multilingual.apropos[2]}}</span>
         <br><br>
-        L’idée est de rendre cette déambulation informative en apportant aux usagers du site des renseignements sur le patrimoine bâti, arboré, scientifique. Il existe sur le site actuel, 2 sentiers d’interprétation, l’un sur les roches face aux amphis et l’autre sur la biodiversité. Ces 2 sentiers sont une base de réflexion mais sont, dans la forme, ce que nous rencontrons partout sur le territoire.
+        <span>{{multilingual.apropos[3]}}</span>
         <br><br>
-        Ce que nous souhaitons mettre en place maintenant, ce sont des sentiers thématiques valorisant l’ensemble des espaces arborés allant de l’IUT, en passant par le SUAPS, le campus de la Borie et la barre de Genève. Ces sentiers thématiques devront être innovants à la fois dans les thématiques à aborder, mais également dans les outils à utiliser pour déambuler et comprendre le patrimoine scientifique, arboré et bâti du campus.</p>
+        <span>{{multilingual.apropos[4]}}</span>
+      </p>
     </div>
     <div class="bloc">
-      <h2>L’ÉQUIPE</h2>
+      <h2>{{multilingual.apropos[5]}}</h2>
       <div class="container mx-auto md:grid md:gap-28 xl:grid-cols-4">
         <div class="text-center">
           <img class="mx-auto hover:scale-110 transition ease-in-out" src="~/assets/img/pdp/martial.png">
-          <p class="font-bold text-xl uppercase mt-5">Escudero Martial</p>
-          <p class="text-sm">Chef de projet - Développeur Full Stack JS</p>
+          <p class="font-bold text-xl uppercase mt-5">{{multilingual.apropos[6]}}</p>
+          <p class="text-sm">{{multilingual.apropos[7]}}</p>
         </div>
         <div class="text-center">
           <img class="mx-auto hover:scale-110 transition ease-in-out" src="~/assets/img/pdp/pacome.png">
-          <p class="font-bold text-xl uppercase mt-5">Pacome Perrichot</p>
-          <p class="text-sm">Développeur Full Stack</p>
+          <p class="font-bold text-xl uppercase mt-5">{{multilingual.apropos[8]}}</p>
+          <p class="text-sm">{{multilingual.apropos[9]}}</p>
         </div>
         <div class="text-center">
           <img class="mx-auto hover:scale-110 transition ease-in-out" src="~/assets/img/pdp/gabriel.png">
-          <p class="font-bold text-xl uppercase mt-5">Gabriel Denajar</p>
-          <p class="text-sm">Développeur Full Stack</p>
+          <p class="font-bold text-xl uppercase mt-5">{{multilingual.apropos[10]}}</p>
+          <p class="text-sm">{{multilingual.apropos[11]}}</p>
         </div>
         <div class="text-center">
           <img class="mx-auto hover:scale-110 transition ease-in-out" src="~/assets/img/pdp/hakima.png">
-          <p class="font-bold text-xl uppercase mt-5">Hakima Bidelhadjela</p>
-          <p class="text-sm">Assistante MOA</p>
+          <p class="font-bold text-xl uppercase mt-5">{{multilingual.apropos[12]}}</p>
+          <p class="text-sm">{{multilingual.apropos[13]}}</p>
         </div>
       </div>
     </div>
@@ -39,10 +40,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   head: {
     title: 'À propos',
-  }
+  },
+  computed: {
+    ...mapGetters('store',['multilingual'])
+  },
 }
 </script>
 

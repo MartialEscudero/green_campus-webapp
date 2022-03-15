@@ -7,7 +7,7 @@
           <swiper-slide class="text">
             <div class="content">
               <div v-for="sentier in sentiers" :key="sentier.item">
-                <Nuxt-link :to="'/sentier/' + sentier.attributes.Slug">
+                <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
                 <div class="card mb-10 hover:scale-105 transition ease-in-out">
                   <div class="flex items-center">
                     <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>

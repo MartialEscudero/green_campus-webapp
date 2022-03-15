@@ -1,5 +1,5 @@
 <template>
-  <Nuxt-link :to="'/sentier/' + sentier.attributes.Slug">
+  <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
   <div class="card h-full hover:scale-105 transition ease-in-out">
     <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
       <div v-bind:id="index" class="MACARTE hidden md:block z-0"></div>

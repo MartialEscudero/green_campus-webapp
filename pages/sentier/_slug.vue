@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="multilingual.sentier" class="container">
     <DialogPoi :piDialog.sync="piDialog" :piSelected="piSelected" />
     <h1>{{sentier.Nom}}</h1>
     <div class="mx-auto md:grid xl:grid-cols-2">
@@ -11,7 +11,7 @@
       </client-only>
     </div>
     <div class="mt-10" v-for="points_interet in sentier.points_interet" :key="points_interet.item">
-      <h2>LES POINTS D'INTÉRÊTS</h2>
+      <h2>{{multilingual.sentier[0]}}</h2>
       <div class="mx-auto md:grid md:gap-16 md:grid-cols-2">
         <div class="card" v-for="pi in points_interet" :key="pi.item">
           <div v-if="!pi.attributes.Audio.data">
@@ -30,12 +30,12 @@
             <h3>{{pi.attributes.Nom}}</h3>
             <vue-markdown v-if="pi.attributes.Description" id="markdown" class="text-justify" :source="pi.attributes.Description.slice(0,200) + '...'"></vue-markdown>
           </div>
-          <button @click="piDialog = true, piSelected = pi">LIRE PLUS</button>
+          <button @click="piDialog = true, piSelected = pi">{{multilingual.sentier[1]}}</button>
         </div>
       </div>
     </div>
     <div class="mt-10" v-for="media in sentier.Media" :key="media.item">
-      <h2>LES IMAGES DU SENTIERS</h2>
+      <h2>{{multilingual.sentier[2]}}</h2>
       <horizontal-scroll class="horizontal-scroll">
         <div class="outer">
           <div class="inner-content" v-for="img in media" :key="img.item">
@@ -70,8 +70,8 @@ export default {
   }),
   methods: {
     ...mapActions('store',['getSentier']),
-    async loadMap() {
 
+    async loadMap() {
       var map = L.map("map").setView([45.837, 1.239], 15);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA', {
@@ -96,10 +96,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('store',['sentier']),
+    ...mapGetters('store',['sentier','multilingual']),
   },
   mounted() {
     this.getSentier(this.$route.params.slug)
+    
     setTimeout(() =>{
       this.loadMap()
     },300)
