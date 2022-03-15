@@ -55,8 +55,10 @@ import 'vue-horizontal-scroll/dist/vue-horizontal-scroll.css'
 
 export default {
   components: {HorizontalScroll},
-  head: {
-    title: 'Sentier',
+  head() {
+    return {
+      title: this.sentier.Nom,
+    }
   },
   data: () => ({
     line : {
