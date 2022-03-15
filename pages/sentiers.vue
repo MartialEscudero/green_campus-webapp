@@ -1,17 +1,27 @@
 <template>
   <div class="container">
     <h1>Les sentiers disponibles à proximité</h1>
-    <select
-      class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-      v-model="currentOrder"
-    >
-      <option selected value="proche">Le sentier le plus proche</option>
-      <option value="court">Le sentier le plus court</option>
-    </select>
+    <div class="flex items-center">
+      <select
+        class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        v-model="currentOrder"
+      >
+        <option selected value="proche">Le sentier le plus proche</option>
+        <option value="court">Le sentier le plus court</option>
+      </select>
+      <div v-if="this.$geolocation.coords !== null" class="flex items-center">
+          <v-icon>mdi-compass</v-icon>
+          <p>Localisation activée</p>
+      </div>
+      <div v-else class="flex items-center">
+          <v-icon>mdi-compass-off</v-icon>
+          <p>Localisation désactivée</p>
+      </div>
+    </div>
     <!-- Grille des sentiers -->
     <div class="inline-grid grid gap-8 grid-cols-1 lg:grid-cols-2">
       <div
-        v-for="(sentier, index) in orderSentiers(mesSentiers)"
+        v-for="(sentier, index) in orderSentiers"
         :key="sentier.id"
       >
         <!-- On crée un composant pour chaque sentier et on transmet les infos du sentier -->
@@ -34,7 +44,7 @@ export default {
   async created() {
     this.enableLocation();
     await this.getMesSentiers();
-    //this.startInterval();
+    this.startInterval();
   },
   data: () => ({
     currentOrder: "proche",
@@ -45,37 +55,11 @@ export default {
     startInterval: function () {
       setInterval(() => {
         this.userPosition = this.$geolocation.coords;
-        console.log(this.userPosition);
         this.updateDistance(this.userPosition);
-        console.log(this.mesSentiers);
       }, 1000);
     },
     compareDistance(a, b) {
       return a.distance - b.distance;
-    },
-    // pour trier les sentiers
-    orderSentiers(items) {
-      // tri par distance entre début du sentier et position de l'utilisateur
-      if (this.currentOrder === "proche") {
-        // copie par valeur et non par référence
-        var itemsbis = JSON.parse(JSON.stringify(items));
-        // trie les sentiers selon une fonction personnalisée
-        const filtered = itemsbis.sort(function (a, b) {
-          return a.distance - b.distance;
-        });
-        return filtered;
-      }
-      // tri par longueur du sentier
-      if (this.currentOrder === "court") {
-        // copie par valeur et non par référence
-        var itemsbis = JSON.parse(JSON.stringify(items));
-        // trie les sentiers selon une fonction personnalisée
-        const filtered = itemsbis.sort(function (a, b) {
-          return a.length - b.length;
-        });
-        return filtered;
-      }
-      return items;
     },
     addDistance(Sentiers) {
       // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
@@ -120,10 +104,7 @@ export default {
         if (sentierDébut !== null && coords !== null) {
           var to = turf.point(sentierDébut);
           var from = turf.point([coords.longitude, coords.latitude]);
-          this.mesSentiers[i] = {
-            ...this.mesSentiers[i],
-            distance: Math.round(turf.distance(from, to, { units: "meters" })),
-          };
+          this.mesSentiers[i].distance = Math.round(turf.distance(from, to, { units: "meters" }))
         } else {
           // Sinon on met à -1 pour afficher un ? dans le composant
           this.mesSentiers[i].distance = -1;
@@ -158,8 +139,33 @@ export default {
       this.mesSentiers = this.addDistance(dtoSentiers);
     },
   },
-  computed: {},
-  // pour changer l'ordre de tri des sentiers WIP
+  computed: {
+      // pour trier les sentiers
+    orderSentiers() {
+      // tri par distance entre début du sentier et position de l'utilisateur
+      if (this.currentOrder === "proche") {
+        // copie par valeur et non par référence
+        //var itemsbis = JSON.parse(JSON.stringify(items));
+        // trie les sentiers selon une fonction personnalisée
+        return this.mesSentiers.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+        //return filtered;
+      }
+      // tri par longueur du sentier
+      if (this.currentOrder === "court") {
+        // copie par valeur et non par référence
+        //var itemsbis = JSON.parse(JSON.stringify(items));
+        // trie les sentiers selon une fonction personnalisée
+        return this.mesSentiers.sort(function (a, b) {
+          return a.length - b.length;
+        });
+        //return filtered;
+      }
+      //return items;
+    },
+  },
+  // pour changer l'ordre de tri des sentiers 
   watch: {
     currentOrder: function (newOrder) {
       this.currentOrder = newOrder;

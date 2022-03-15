@@ -41,12 +41,11 @@ export default {
       setInterval(() => {
         this.userPosition = this.$geolocation.coords;
         //console.log(this.userPosition);
-        this.updateDistance();
+        this.updateDistance2();
       }, 1000);
     },
     updateDistance() {
-      const sentierDébut =
-        this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
+      const sentierDébut = this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
       // si toutes les variables sont définies, on calcule la distance
       if (sentierDébut !== null && this.userPosition !== null) {
         var to = turf.point(sentierDébut);
@@ -58,6 +57,14 @@ export default {
           turf.distance(from, to, { units: "meters" })
         );
       }
+    },
+    updateDistance2() {
+        // on récupère la distance entre deux points
+        if (this.sentier.distance !== -1) {
+          this.distance = this.sentier.distance
+        } else {
+            this.distance = '?'
+        }
     },
     getDistance() {
       try {
@@ -115,7 +122,6 @@ export default {
   mounted() {
     this.getDistance();
     this.startInterval();
-    console.info(this.sentier);
   },
 };
 </script>
