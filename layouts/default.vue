@@ -1,20 +1,17 @@
 <template>
   <v-app>
     <DialogHeroku />
-    <div class="block">
-      <Nuxt-link to="/">Index</Nuxt-link> -
-      <Nuxt-link to="/sentiers">Sentiers</Nuxt-link> -
-      <Nuxt-link to="/map">Map</Nuxt-link> -
-      <Nuxt-link to="/a-propos">A-Propos</Nuxt-link>
-    </div>
+    <HeaderNav />
     <Nuxt />
   </v-app>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import HeaderNav from '@/components/HeaderNav'
 
 export default {
+  components: { HeaderNav },
   data: () => ({
       drawer: false,
       group: null,

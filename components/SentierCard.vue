@@ -75,7 +75,6 @@ export default {
             accessToken: "your.mapbox.access.token",
           }
         ).addTo(map);
-
         // J'affiche le sentier sur la map.
         L.geoJson(this.sentier.attributes.GeoJSON.dataMap, {
           style: function (feature) {
@@ -102,7 +101,6 @@ export default {
             }
           },
         }).addTo(map);
-
         // on récupère la distance entre deux points
         if (this.sentier.distance !== -1) {
           this.distance = this.sentier.distance;
@@ -125,12 +123,10 @@ export default {
   padding: 20px;
   background: #f1f1f1;
   border-radius: 15px;
-
   & .line {
     width: 30px;
     height: 3px;
   }
-
   & h1 {
     padding: 10px 10px 30px 5px;
     font-style: normal;
@@ -140,7 +136,6 @@ export default {
     text-align: justify;
     color: #bf7300;
   }
-
   & h2 {
     font-style: normal;
     font-weight: 800;
@@ -149,7 +144,6 @@ export default {
     text-align: justify;
     color: rgba(6, 102, 100, 0.8);
   }
-
   & .icon {
     padding: 10px 0px 30px 0px;
     margin-left: -10px;
@@ -159,7 +153,6 @@ export default {
     line-height: 25px;
     color: #bf7300;
   }
-
   & p {
     font-style: normal;
     font-weight: 400;
@@ -168,14 +161,12 @@ export default {
     text-align: justify;
     color: #8d8d8d;
   }
-
   & .MACARTE {
     height: 25vh;
     border-radius: 40px;
     border: 5px solid rgba(6, 102, 100, 0.8);
   }
 }
-
 .card:hover {
   background: #d8d8d8;
   cursor: pointer;
