@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto md:grid md:gap-28 xl:grid-cols-2">
-    <div id="map"></div>
+    <div class="z-0" id="map"></div>
     <div>
       <client-only>
         <swiper class="swiper" :options="swiperOption">

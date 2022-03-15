@@ -3,7 +3,7 @@
     <DialogPoi :piDialog.sync="piDialog" :piSelected="piSelected" />
     <h1>{{sentier.Nom}}</h1>
     <div class="mx-auto md:grid xl:grid-cols-2">
-      <div id="map"></div>
+      <div class="z-0" id="map"></div>
       <client-only>
       <div>
         <vue-markdown id="markdown" class="text-justify" :source="sentier.Description"></vue-markdown>

@@ -2,7 +2,7 @@
   <Nuxt-link :to="'/sentier/' + sentier.attributes.Slug">
   <div class="card h-full hover:scale-105 transition ease-in-out">
     <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
-      <div v-bind:id="index" class="MACARTE hidden md:block"></div>
+      <div v-bind:id="index" class="MACARTE hidden md:block z-0"></div>
       <div>
         <div class="flex items-center">
           <v-icon class="icon">mdi-map-marker</v-icon>
