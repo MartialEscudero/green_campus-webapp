@@ -16,12 +16,13 @@
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
     ],
     "sentiers" : [
+      "Sentiers à proximité",
       "LES SENTIERS DISPONIBLES À PROXIMITÉ",
-      "Trier par",
+      "Trier par :",
       "Le plus proche",
       "Le plus court",
-      "Localisation active",
-      "Localisation inactive"
+      "Localisation activée",
+      "Localisation désactivée"
     ],
     "sentier" : [
       "LES POINTS D'INTÉRÊTS",
@@ -70,12 +71,13 @@
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
     ],
     "sentiers" : [
+      "Nearby trails",
       "AVAILABLE TRAILS NEARBY",
-      "Order by",
+      "Order by :",
       "The nearest",
       "The shortest",
-      "Localisation active",
-      "Active location"
+      "Geolocation enabled",
+      "Geolocation disabled"
     ],
     "sentier" : [
       "POINTS OF INTEREST",

@@ -1,8 +1,9 @@
 <template>
-  <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
+  
   <div class="card h-full hover:scale-105 transition ease-in-out">
     <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
       <div v-bind:id="index" class="MACARTE hidden md:block z-0"></div>
+      <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
       <div>
         <div class="flex items-center">
           <v-icon class="icon">mdi-map-marker</v-icon>
@@ -13,21 +14,18 @@
         <div class="flex items-center">
           <h2>{{ sentier.attributes.Nom }}</h2>
         </div>
-        <p class="mt-3">
-          {{ sentier.attributes.Description.slice(0, 250) + "..." }}
-        </p>
+        <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
       </div>
+      </Nuxt-link>
     </div>
   </div>
-  </Nuxt-link>
+  
 </template>
 
 <script>
-var turf = require("@turf/turf");
 export default {
   data: () => ({
     distance: "?",
-    userPosition: {},
   }),
   props: {
     sentier: {
@@ -39,26 +37,10 @@ export default {
   methods: {
     startInterval: function () {
       setInterval(() => {
-        this.userPosition = this.$geolocation.coords;
-        //console.log(this.userPosition);
-        this.updateDistance2();
+        this.updateDistance();
       }, 1000);
     },
     updateDistance() {
-      const sentierDébut = this.sentier.attributes.GeoJSON.dataMap.geometry.coordinates[0];
-      // si toutes les variables sont définies, on calcule la distance
-      if (sentierDébut !== null && this.userPosition !== null) {
-        var to = turf.point(sentierDébut);
-        var from = turf.point([
-          this.userPosition.longitude,
-          this.userPosition.latitude,
-        ]);
-        this.distance = Math.round(
-          turf.distance(from, to, { units: "meters" })
-        );
-      }
-    },
-    updateDistance2() {
         // on récupère la distance entre deux points
         if (this.sentier.distance !== -1) {
           this.distance = this.sentier.distance

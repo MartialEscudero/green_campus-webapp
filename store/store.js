@@ -31,17 +31,8 @@ export const mutations = {
     state.lang = args
   },
 
-  async setSentiers(state, args) {
+  setSentiers(state, args) {
     state.sentiers = args.data
-    // Je récupère le fichier geojson et je réinjecte son contenu dans l'Object sentier dans une nouvelle entrée dataMap aussi en injectant la couleur.
-    for (var i = 0; i < state.sentiers.length; i++) {
-      const response = await fetch(state.sentiers[i].attributes.GeoJSON.data.attributes.url);
-      var res = await response.json()
-      state.sentiers[i].attributes.GeoJSON.dataMap = (res.features[0])
-      state.sentiers[i].attributes.GeoJSON.dataMap.properties = {
-        "color" : state.sentiers[i].attributes.Couleur
-      }
-    }
   },
 
   setSentier(state, args) {
@@ -76,9 +67,19 @@ export const actions = {
     commit('setLang', item)
   },
 
-  getSentiers({commit, state}) {
-    axios.get(strapi + 'sentiers?populate=%2A&locale=' + state.lang)
-    .then((res) => {
+  async getSentiers({commit, state}) {
+    //les données sont en attente  
+    await axios.get(strapi + 'sentiers?populate=%2A&locale=' + state.lang)
+    .then(async (res) => {
+    // Je récupère le fichier geojson et je réinjecte son contenu dans l'Object sentier dans une nouvelle entrée dataMap aussi en injectant la couleur.
+    for (var i = 0; i < res.data.data.length; i++) {
+        const response = await fetch(res.data.data[i].attributes.GeoJSON.data.attributes.url);
+        var res2 = await response.json()
+        res.data.data[i].attributes.GeoJSON.dataMap = (res2.features[0])
+        res.data.data[i].attributes.GeoJSON.dataMap.properties = {
+          "color" : res.data.data[i].attributes.Couleur
+        }
+      }
       commit('setSentiers', res.data)
     })
     .catch((err) => {

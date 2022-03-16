@@ -100,7 +100,7 @@ export default {
     if (this.sentiers.length === 0) {
       setTimeout(() =>{
         this.loadMap()
-      },300)
+      },600)
     } else {
       this.loadMap()
     }

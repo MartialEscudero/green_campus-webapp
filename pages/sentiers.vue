@@ -1,29 +1,27 @@
 <template>
-  <div class="container">
-    <h1>Les sentiers disponibles à proximité</h1>
-    <div class="flex items-center">
+  <div v-if="multilingual.sentiers" class="container">
+    <h1>{{ multilingual.sentiers[1] }}</h1>
+    <div class="flex items-center mb-5">
+        <label class="label select-box">{{ multilingual.sentiers[2] }}</label>
       <select
-        class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        class="select-box"
         v-model="currentOrder"
       >
-        <option selected value="proche">Le sentier le plus proche</option>
-        <option value="court">Le sentier le plus court</option>
+        <option selected value="proche">{{ multilingual.sentiers[3] }}</option>
+        <option value="court">{{ multilingual.sentiers[4] }}</option>
       </select>
       <div v-if="this.$geolocation.coords !== null" class="flex items-center">
-          <v-icon>mdi-compass</v-icon>
-          <p>Localisation activée</p>
+        <v-icon class="localisation-on">mdi-compass</v-icon>
+        <p class="localisation-on">{{ multilingual.sentiers[5] }}</p>
       </div>
       <div v-else class="flex items-center">
-          <v-icon>mdi-compass-off</v-icon>
-          <p>Localisation désactivée</p>
+        <v-icon class="localisation-off">mdi-compass-off</v-icon>
+        <p class="localisation-off">{{ multilingual.sentiers[6] }}</p>
       </div>
     </div>
     <!-- Grille des sentiers -->
     <div class="inline-grid gap-8 grid-cols-1 lg:grid-cols-2">
-      <div
-        v-for="(sentier, index) in orderSentiers"
-        :key="sentier.id"
-      >
+      <div v-for="(sentier, index) in orderSentiers" :key="sentier.id">
         <!-- On crée un composant pour chaque sentier et on transmet les infos du sentier -->
         <SentierCard :sentier="sentier" :index="index"></SentierCard>
       </div>
@@ -32,19 +30,20 @@
 </template>
 
 <script>
-import Vue2Filters from "vue2-filters";
+import { mapGetters, mapActions } from 'vuex'
 var turf = require("@turf/turf");
 
 export default {
-  //pour utiliser des méthodes de tri directement dans la boucle v-for
-  mixins: [Vue2Filters.mixin],
   head: {
     title: "Sentiers à proximité",
   },
   async created() {
+    // Demande la géolocalisation
     this.enableLocation();
+    // Récupère les sentiers
     await this.getMesSentiers();
-    this.startInterval();
+    // Met à jour périodiquement la distance entre l'utilisateur et le début des sentiers
+    this.startIntervalDistance();
   },
   data: () => ({
     currentOrder: "proche",
@@ -52,14 +51,12 @@ export default {
     mesSentiers: [],
   }),
   methods: {
-    startInterval: function () {
+      ...mapActions('store', ['getMultilingual']),
+    startIntervalDistance: function () {
       setInterval(() => {
-        this.userPosition = this.$geolocation.coords;
+        this.getPosition();
         this.updateDistance(this.userPosition);
       }, 1000);
-    },
-    compareDistance(a, b) {
-      return a.distance - b.distance;
     },
     addDistance(Sentiers) {
       // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
@@ -96,10 +93,7 @@ export default {
       // Pour chaque sentier, calcule la distance entre l'utilisateur et le sentier
       for (var i = 0; i < this.mesSentiers.length; i++) {
         // récupère le point de départ du sentier (le premier point du tracé)
-        const sentierDébut =
-          this.mesSentiers[i].attributes.GeoJSON.dataMap.geometry
-            .coordinates[0];
-
+        const sentierDébut = this.mesSentiers[i].attributes.GeoJSON.dataMap.geometry.coordinates[0];
         // si toutes les variables sont définies, on calcule la distance
         if (sentierDébut !== null && coords !== null) {
           var to = turf.point(sentierDébut);
@@ -123,7 +117,6 @@ export default {
         "https://admingreencampus.herokuapp.com/api/" + "sentiers?populate=%2A"
       );
       var dtoSentiers = response.data.data;
-
       // Je récupère le fichier geojson et je réinjecte son contenu dans l'Object sentier dans une nouvelle entrée dataMap aussi en injectant la couleur.
       for (var i = 0; i < dtoSentiers.length; i++) {
         const response = await fetch(
@@ -140,32 +133,26 @@ export default {
     },
   },
   computed: {
-      // pour trier les sentiers
+    ...mapGetters('store',['multilingual']),
+    // pour trier les sentiers
     orderSentiers() {
       // tri par distance entre début du sentier et position de l'utilisateur
       if (this.currentOrder === "proche") {
-        // copie par valeur et non par référence
-        //var itemsbis = JSON.parse(JSON.stringify(items));
         // trie les sentiers selon une fonction personnalisée
         return this.mesSentiers.sort(function (a, b) {
           return a.distance - b.distance;
         });
-        //return filtered;
       }
       // tri par longueur du sentier
       if (this.currentOrder === "court") {
-        // copie par valeur et non par référence
-        //var itemsbis = JSON.parse(JSON.stringify(items));
         // trie les sentiers selon une fonction personnalisée
         return this.mesSentiers.sort(function (a, b) {
           return a.length - b.length;
         });
-        //return filtered;
       }
-      //return items;
     },
   },
-  // pour changer l'ordre de tri des sentiers 
+  // pour changer l'ordre de tri des sentiers
   watch: {
     currentOrder: function (newOrder) {
       this.currentOrder = newOrder;
@@ -179,9 +166,39 @@ h1 {
   font-style: normal;
   font-weight: 800;
   font-size: 35px;
+  text-transform: uppercase;
   line-height: 41px;
   padding: 50px 0px;
   color: rgba(6, 102, 100, 0.8);
+}
+
+.select-box {
+  text-transform: uppercase;
+  font-weight: 800;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #c4c4c4;
+  color: #4b4b4b;
+  margin: 0;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.label {
+  margin: 0;
+  padding: 10px 0px 10px 10px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.localisation-on {
+  color: #2c8634;
+  margin: 0;
+  padding: 0px 5px;
+}
+
+.localisation-off {
+  color: #e22911;
+  margin: 0;
+  padding: 0px 5px;
 }
 
 @media screen and (max-width: 640px) {
