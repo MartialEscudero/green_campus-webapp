@@ -3,7 +3,7 @@
     <div class="z-0" id="map"></div>
     <div>
       <client-only>
-        <swiper class="swiper" :options="swiperOption">
+        <swiper v-if="$vuetify.breakpoint.mdAndUp" class="swiper" :options="swiperOption">
           <swiper-slide class="text">
             <div class="content">
               <div v-for="sentier in sentiers" :key="sentier.item">
@@ -13,7 +13,7 @@
                     <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                     <h1>{{ sentier.attributes.Nom }}</h1>
                   </div>
-                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
+                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
                 </div>
                 </Nuxt-link>
               </div>
@@ -21,6 +21,19 @@
           </swiper-slide>
           <div class="swiper-scrollbar" slot="scrollbar"></div>
         </swiper>
+        <div v-if="$vuetify.breakpoint.smAndDown">
+          <div v-for="sentier in sentiers" :key="sentier.item">
+            <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
+            <div class="card mb-10 hover:scale-105 transition ease-in-out">
+              <div class="flex items-center">
+                <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
+                <h1>{{ sentier.attributes.Nom }}</h1>
+              </div>
+              <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
+            </div>
+            </Nuxt-link>
+          </div>
+        </div>
       </client-only>
     </div>
   </div>
@@ -50,21 +63,22 @@ export default {
   }),
   methods: {
     ...mapActions("store", ["getSentiers"]),
+    
     loadMap() {
       // Je récupère toutes les coordonnées des sentiers.
       for (var i = 0; i < this.sentiers.length; i++) {
         this.lines.features.push(this.sentiers[i].attributes.GeoJSON.dataMap)
       }
 
-      var map = L.map("map").setView([45.837, 1.239], 16);
+      var map = L.map("map").setView([45.837, 1.239], 15);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA', {
-          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 22,
-          id: 'mapbox/streets-v11',
-          tileSize: 512,
-          zoomOffset: -1,
-          accessToken: 'your.mapbox.access.token'
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 22,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
       }).addTo(map);
 
       // J'affiche les sentiers sur la map.
@@ -97,9 +111,7 @@ export default {
     ...mapGetters('store',['sentiers'])
   },
   async mounted() {
-    console.log("mounted");
     await this.getSentiers();
-    console.log(this.sentiers);
     this.loadMap();
   },
 };
@@ -107,7 +119,7 @@ export default {
 
 <style lang="scss" scoped>
 .swiper {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 150px);
   .swiper-slide {
     &.text {
       font-size: 18px!important;
@@ -140,7 +152,7 @@ export default {
 }
 
 #map { 
-  height: calc(100vh - 70px);
+  height: calc(100vh - 150px);
   border-radius: 40px;
   border: 5px solid rgba(6, 102, 100, 0.8);
 }
@@ -149,7 +161,7 @@ export default {
   padding: 20px;
   background: #F1F1F1;
   border-radius: 15px;
-  max-height: 150px;
+  height: 150px;
 
   & .line {
     width: 30px;
@@ -171,6 +183,10 @@ export default {
     line-height: 25px;
     text-align: justify;
     color: #8D8D8D;
+    text-overflow: ellipsis; 
+    display: block; 
+    overflow: hidden; 
+    white-space: nowrap;
   }
 }
 
@@ -196,7 +212,7 @@ export default {
     border-radius: 9px;
     margin-right: 12px;
     margin-left: 12px;
-    max-height: 200px;
+    height: 120px;
 
     & .line {
       width: 20px;
