@@ -95,14 +95,6 @@ export const actions = {
             })
     },
 
-    getLangLocale({ commit }, item) {
-        commit('setLangLocale', item)
-    },
-
-    changeLang({ commit }, item) {
-        commit('setLang', item)
-    },
-
     async getSentiers({ commit, state, dispatch }) {
         // Appel de l'API Strapi 
         await axios.get(strapi + 'sentiers?populate=%2A&locale=' + state.lang)
@@ -157,7 +149,7 @@ export const actions = {
             })
     },
 
-    addLenght({ commit, state }, data) {
+    addLenght({}, data) {
         for (var i = 0; i < data.data.length; i++) {
             // récupère tous les points du tracé pour calculer sa longueur
             const line = turf.lineString(data.data[i].attributes.GeoJSON.dataMap.geometry.coordinates);

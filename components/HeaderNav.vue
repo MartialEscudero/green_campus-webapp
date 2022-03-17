@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -46,16 +46,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions('store',['changeLang','getSentiers','getSentier','getMultilingual', 'getLangLocale']),
+    ...mapActions('store',['getSentiers','getSentier','getMultilingual']),
+    
+    ...mapMutations('store',['setLangLocale', 'setLang']),
     
     getLang() {
       var lang = localStorage.getItem('lang')
       if (!lang) {
         localStorage.setItem('lang', 'fr');
-        this.getLangLocale("fr")
+        this.setLangLocale("fr")
         this.langswitch = false
       } else {
-        this.getLangLocale(lang) 
+        this.setLangLocale(lang) 
         if (lang === "fr") {
           this.langswitch = false
         }
@@ -67,7 +69,7 @@ export default {
 
     switchLang() {
       this.getMultilingual(),
-      this.changeLang(this.langswitch),
+      this.setLang(this.langswitch),
       this.getSentiers()
       if (this.$route.name === "sentier-slug") {
         this.getSentier(this.$route.params.slug);
