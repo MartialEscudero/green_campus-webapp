@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('store',['getSentiers','getSentier','getMultilingual']),
+    ...mapActions('store',['getSentiers','getSentier','getMultilingual','getPoi']),
     
     ...mapMutations('store',['setLangLocale', 'setLang']),
     
@@ -73,6 +73,9 @@ export default {
       this.getSentiers()
       if (this.$route.name === "sentier-slug") {
         this.getSentier(this.$route.params.slug);
+      }
+      if (this.$route.name === "point-interet-slug") {
+        this.getPoi(this.$route.params.slug);
       }
     }
   },
