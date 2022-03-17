@@ -56,13 +56,10 @@ export default {
   computed: {
     ...mapGetters('store',['poi']),
   },
-  mounted() {
-    this.getPoi(this.$route.params.slug)
-
-    setTimeout(() =>{
-      this.setPoi()
-    },300)
-  }
+  async mounted() {
+    await this.getPoi(this.$route.params.slug);
+    this.setPoi();
+  },
 }
 </script>
 

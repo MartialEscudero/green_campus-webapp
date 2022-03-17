@@ -105,8 +105,8 @@ export const actions = {
     })
   },
 
-  getPoi({commit, state}, item) {
-    axios.get(strapi + 'points-interet?populate=%2A&filters[UUID][$eq]=' + item + '&locale=' + state.lang)
+  async getPoi({commit, state}, item) {
+    await axios.get(strapi + 'points-interet?populate=%2A&filters[UUID][$eq]=' + item + '&locale=' + state.lang)
     .then((res) => {
       commit('setPoi', res.data)
     })
