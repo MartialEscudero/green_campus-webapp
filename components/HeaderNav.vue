@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('store',['changeLang','getSentiers','getMultilingual', 'getLangLocale']),
+    ...mapActions('store',['changeLang','getSentiers','getSentier','getMultilingual', 'getLangLocale']),
     
     getLang() {
       var lang = localStorage.getItem('lang')
@@ -70,7 +70,7 @@ export default {
       this.changeLang(this.langswitch),
       this.getSentiers()
       if (this.$route.name === "sentier-slug") {
-        location.reload();
+        this.getSentier(this.$route.params.slug);
       }
     }
   },
