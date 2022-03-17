@@ -5,7 +5,7 @@ const strapi = "https://admingreencampus.herokuapp.com/api/"
 export const state = () => ({
   heroku: false,
   multilingual: {},
-  lang : null,
+  lang : 'fr',
   sentiers: [],
   sentier: [],
   poi: [],

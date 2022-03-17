@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   head: {
@@ -48,7 +48,8 @@ export default {
       mousewheel: true
     }
   }),
-  methods:{
+  methods: {
+    ...mapActions("store", ["getSentiers"]),
     loadMap() {
       // Je récupère toutes les coordonnées des sentiers.
       for (var i = 0; i < this.sentiers.length; i++) {
@@ -95,17 +96,13 @@ export default {
   computed: {
     ...mapGetters('store',['sentiers'])
   },
-  mounted() {
-    // Si les sentiers ne sont pas chargés, j'impose un très léger délai à cette fonction pour être sûr qu'elle s'exécute dans le bon ordre.
-    if (this.sentiers.length === 0) {
-      setTimeout(() =>{
-        this.loadMap()
-      },600)
-    } else {
-      this.loadMap()
-    }
-  }
-}
+  async mounted() {
+    console.log("mounted");
+    await this.getSentiers();
+    console.log(this.sentiers);
+    this.loadMap();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
