@@ -95,8 +95,8 @@ export const actions = {
     }, 3000);
   },
 
-  getSentier({commit, state}, item) {
-    axios.get(strapi + 'sentiers?filters[UUID][$eq]=' + item + '&populate[0]=points_interet&populate[1]=GeoJSON&populate[2]=points_interet.Image&populate[3]=points_interet.Audio&populate[4]=Media' + '&locale=' + state.lang)
+  async getSentier({commit, state}, item) {
+    await axios.get(strapi + 'sentiers?filters[UUID][$eq]=' + item + '&populate[0]=points_interet&populate[1]=GeoJSON&populate[2]=points_interet.Image&populate[3]=points_interet.Audio&populate[4]=Media' + '&locale=' + state.lang)
     .then((res) => {
       commit('setSentier', res.data)
     })

@@ -104,7 +104,11 @@ export default {
     setTimeout(() =>{
       this.loadMap()
     },300)
-  }
+  },
+  async mounted() {
+    await this.getSentier(this.$route.params.slug);
+    this.loadMap();
+  },
 }
 </script>
 
