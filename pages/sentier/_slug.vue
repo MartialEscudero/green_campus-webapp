@@ -97,14 +97,7 @@ export default {
   },
   computed: {
     ...mapGetters('store',['sentier','multilingual']),
-  },
-  mounted() {
-    this.getSentier(this.$route.params.slug)
-    
-    setTimeout(() =>{
-      this.loadMap()
-    },300)
-  },
+  }, 
   async mounted() {
     await this.getSentier(this.$route.params.slug);
     this.loadMap();
