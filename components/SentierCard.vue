@@ -1,32 +1,31 @@
 <template>
-  
   <div class="card h-full hover:scale-105 transition ease-in-out">
     <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
       <div v-bind:id="index" class="MACARTE hidden md:block z-0"></div>
       <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
-      <div>
-        <div class="flex items-center">
-          <v-icon class="icon">mdi-map-marker</v-icon>
-          <h1 v-if="distance < 1000">{{ distance }} m</h1>
-          <h1 v-else-if="distance >= 1000">{{ Math.floor(distance/1000*10)/10 }} km</h1>
-          <h1 v-else>?</h1>
+        <div>
+          <div class="flex items-center">
+            <v-icon class="icon">mdi-map-marker</v-icon>
+            <h1 v-if="sentier.distance === -1">?</h1>
+            <h1 v-else-if="sentier.distance < 1000">{{ sentier.distance }} m</h1>
+            <h1 v-else-if="sentier.distance >= 1000">{{ Math.round(sentier.distance / 100) / 10 }} km</h1>
+          </div>
+          <div class="flex items-center">
+            <h2>{{ sentier.attributes.Nom }}</h2>
+          </div>
+          <vue-markdown
+            id="markdown"
+            class="mt-3"
+            :source="sentier.attributes.Description.slice(0, 200) + '...'"
+          ></vue-markdown>
         </div>
-        <div class="flex items-center">
-          <h2>{{ sentier.attributes.Nom }}</h2>
-        </div>
-        <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,200) + '...'" ></vue-markdown>
-      </div>
       </Nuxt-link>
     </div>
   </div>
-  
 </template>
 
 <script>
 export default {
-  data: () => ({
-    distance: "?",
-  }),
   props: {
     sentier: {
       type: Object,
@@ -34,23 +33,13 @@ export default {
     },
     index: null,
   },
+  mounted() {
+    this.buildMap();
+  },
   methods: {
-    startInterval: function () {
-      setInterval(() => {
-        this.updateDistance();
-      }, 1000);
-    },
-    updateDistance() {
-        // on récupère la distance entre deux points
-        if (this.sentier.distance !== -1) {
-          this.distance = this.sentier.distance
-        } else {
-            this.distance = '?'
-        }
-    },
-    getDistance() {
+    buildMap() {
       try {
-        // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes)
+        // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes sur la même page)
         var map = L.map(`${this.index}`).setView([45.837, 1.239], 16);
         L.tileLayer(
           "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA",
@@ -90,18 +79,10 @@ export default {
             }
           },
         }).addTo(map);
-        // on récupère la distance entre deux points
-        if (this.sentier.distance !== -1) {
-          this.distance = this.sentier.distance;
-        }
       } catch (e) {
         console.error(e);
       }
     },
-  },
-  mounted() {
-    this.getDistance();
-    this.startInterval();
   },
 };
 </script>
