@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div v-if="poi" class="mx-auto md:grid md:gap-28 md:grid-cols-2">
-      <client-only>
-      <div>
+      <client-only >
+      <div v-if="$vuetify.breakpoint.mdAndUp">
         <v-carousel
           cycle
           hide-delimiter-background
@@ -24,6 +24,21 @@
             <audio controls :src="audio[0].attributes.url"></audio>
           </div>
         </div>
+      </div>
+      <div v-if="$vuetify.breakpoint.smAndDown">
+        <v-carousel
+          cycle
+          hide-delimiter-background
+          show-arrows-on-hover
+          height="400"
+        >
+          <v-carousel-item
+            v-for="(slide, i) in this.poiMedia.Image[0]"
+            :key="i"
+            :src="slide.attributes.url"
+          >
+          </v-carousel-item>
+        </v-carousel>
       </div>
       </client-only>
     </div>
@@ -70,5 +85,24 @@ h1 {
   font-size: 35px;
   line-height: 41px;
   color: rgba(6, 102, 100, 0.8);
+}
+
+audio {
+  display:block;
+  margin:auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 640px) {
+  h1 {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  #markdown {
+    margin-bottom: 10px;
+  }
 }
 </style>

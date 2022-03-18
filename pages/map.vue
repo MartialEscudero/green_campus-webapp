@@ -177,6 +177,7 @@ export default {
   }
 
   & #markdown {
+    height: 80px;
     font-style: normal;
     font-weight: 400;
     font-size: 17px;

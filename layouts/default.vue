@@ -1,19 +1,15 @@
 <template>
   <v-app>
     <DialogHeroku />
-    <HeaderNav />
+    <HeaderNavbar />
     <Nuxt />
   </v-app>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import HeaderNav from '@/components/HeaderNav'
 
 export default {
-  components: { HeaderNav },
-  data: () => ({
-  }),
   methods: {
     ...mapActions('store', ['getSentiers','getMultilingual']),
   },
@@ -23,6 +19,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

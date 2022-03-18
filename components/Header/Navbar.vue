@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-toolbar flat>
-      <v-app-bar-nav-icon to="/"><img src="~/../assets/img/full_logo.png"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon to="/"><img src="~/assets/img/full_logo.png"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
 
