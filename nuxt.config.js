@@ -85,5 +85,11 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // https://github.com/prismicio/vue-essential-slices/issues/15#issuecomment-921734633
+    postcss: {
+      plugins: {
+        'postcss-custom-properties': false
+      }
+    }
   }
 }
