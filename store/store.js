@@ -85,7 +85,6 @@ export const mutations = {
 }
 
 export const actions = {
-
   // Récupère le fichier json contenant les traductions des données en "dur"
   getMultilingual({ commit }) {
     axios.get('/multilingual.json')
@@ -98,6 +97,16 @@ export const actions = {
   },
 
   async getSentiers({ commit, state, dispatch }) {
+    // Affiche une pop-up et recharge automatiquement la page si le serveur Heroku est endormi
+    setTimeout(() => {
+      if (state.sentiers.length === 0) {
+        commit('setHerokuDialog')
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+      }
+    }, 3000);
+
     // Appel de l'API Strapi 
     await axios.get(strapi + 'sentiers?populate=%2A&locale=' + state.lang)
     .then(async (res) => {
@@ -120,15 +129,6 @@ export const actions = {
     .catch((err) => {
       console.error(err)
     })
-    // Recharge automatiquement la page si le serveur Heroku est endormi
-    setTimeout(() => {
-      if (state.sentiers.length === 0) {
-        commit('setHerokuDialog')
-        setTimeout(() => {
-            location.reload();
-        }, 30000);
-      }
-    }, 3000);
   },
 
   // Récupère le sentier choisi
