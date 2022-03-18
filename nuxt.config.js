@@ -42,6 +42,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://github.com/skyatura/vue-geolocation-api
+    'vue-geolocation-api/nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -61,9 +63,9 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/css/variables.scss'],
+    customVariables: ['~/assets/css/variablesvuetify.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -78,6 +80,9 @@ export default {
     }
   },
 
+  geolocation:  {
+    watch: false,
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

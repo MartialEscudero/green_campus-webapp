@@ -1,0 +1,113 @@
+
+{
+  "fr": {
+    "navbar" : [
+      "Accueil",
+      "QR Code",
+      "Sentiers",
+      "Carte",
+      "À propos"
+    ],
+    "accueil" : [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis, non volutpat nibh mattis non. Praesent ac dolor nisl. Morbi leo quam, dictum id turpis vitae, euismod blandit nibh. Phasellus ornare quis nisi nec hendrerit. Vivamus nec tristique quam, quis auctor dolor. Pellentesque vel lorem rhoncus ante.",
+      "DÉCOUVRIR LES SENTIERS",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.",
+      "SCANNER UN QR CODE",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
+    ],
+    "sentiers" : [
+      "Sentiers à proximité",
+      "LES SENTIERS DISPONIBLES À PROXIMITÉ",
+      "Trier par :",
+      "Le plus proche",
+      "Le plus court",
+      "Localisation activée",
+      "Localisation désactivée"
+    ],
+    "sentier" : [
+      "LES POINTS D'INTÉRÊTS",
+      "LIRE PLUS",
+      "LES IMAGES DU SENTIER"
+    ],
+    "qrcode" : [
+      "SCAN QR CODE",
+      "Utilise ton smartphone pour scanner QR Code sur ton chemin !",
+      "SAISIR LE CODE DU POINT D’INTÉRÊT",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. ",
+      "Caméra active",
+      "Caméra inactive",
+      "DÉCOUVRIR CE POINT D'INTÉRÊT"
+    ],
+    "apropos" : [
+      "À PROPOS DE GREEN CAMPUS",
+      "LE CONCEPT",
+      "Le projet que doivent réaliser les étudiants est un projet de valorisation du campus de La Borie au travers de la création d’un parcours de déambulation des usagers du campus, mais également de visiteurs et/ou de citoyens de la ville de Limoges et de l’agglomération de Limoges.",
+      "L’idée est de rendre cette déambulation informative en apportant aux usagers du site des renseignements sur le patrimoine bâti, arboré, scientifique. Il existe sur le site actuel, 2 sentiers d’interprétation, l’un sur les roches face aux amphis et l’autre sur la biodiversité. Ces 2 sentiers sont une base de réflexion mais sont, dans la forme, ce que nous rencontrons partout sur le territoire.",
+      "Ce que nous souhaitons mettre en place maintenant, ce sont des sentiers thématiques valorisant l’ensemble des espaces arborés allant de l’IUT, en passant par le SUAPS, le campus de la Borie et la barre de Genève. Ces sentiers thématiques devront être innovants à la fois dans les thématiques à aborder, mais également dans les outils à utiliser pour déambuler et comprendre le patrimoine scientifique, arboré et bâti du campus.",
+      "L’ÉQUIPE",
+      "ESCUDERO MARTIAL",
+      "Chef de projet - Développeur Full Stack JS",
+      "PACOME PERRICHOT",
+      "Développeur Full Stack",
+      "GABRIEL DENAJAR",
+      "Développeur Full Stack",
+      "HAKIMA BIDELHADJELA",
+      "Assistante MOA"
+    ]
+  },
+  "en": {
+    "navbar" : [
+      "Home",
+      "QR Code",
+      "Trails",
+      "Map",
+      "About"
+    ],
+    "accueil" : [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis, non volutpat nibh mattis non. Praesent ac dolor nisl. Morbi leo quam, dictum id turpis vitae, euismod blandit nibh. Phasellus ornare quis nisi nec hendrerit. Vivamus nec tristique quam, quis auctor dolor. Pellentesque vel lorem rhoncus ante.",
+      "DDISCOVER THE TRAILS",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.",
+      "SCAN A QR CODE",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
+    ],
+    "sentiers" : [
+      "Nearby trails",
+      "AVAILABLE TRAILS NEARBY",
+      "Order by :",
+      "The nearest",
+      "The shortest",
+      "Geolocation enabled",
+      "Geolocation disabled"
+    ],
+    "sentier" : [
+      "POINTS OF INTEREST",
+      "READ MORE",
+      "IMAGES OF THE TRAIL"
+    ],
+    "qrcode" : [
+      "SCAN QR CODE",
+      "Use your smartphone to scan the QR code on your way !",
+      "ENTER THE CODE OF THE POINT OF INTEREST",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. ",
+      "Active camera",
+      "Inactive camera",
+      "DISCOVER THIS POINT OF INTEREST"
+    ],
+    "apropos" : [
+      "ABOUT GREEN CAMPUS",
+      "THE CONCEPT",
+      "The project that the students must carry out is a project to enhance the value of the La Borie campus through the creation of a walking route for users of the campus, but also for visitors and/or citizens of the city of Limoges and the Limoges agglomeration.",
+      "The idea is to make this walk informative by providing site users with information on the built, tree and scientific heritage. On the current site, there are two interpretation trails, one on the rocks opposite the amphitheatre and the other on biodiversity. These two paths are a basis for reflection but are, in form, what we find everywhere in the area.",
+      "What we would like to set up now are thematic paths that will enhance all the tree-lined areas from the IUT, through the SUAPS, the Borie campus and the Geneva bar. These thematic paths will have to be innovative both in the themes to be tackled, but also in the tools to be used to wander around and understand the scientific, tree and building heritage of the campus.",
+      "THE TEAM",
+      "ESCUDERO MARTIAL",
+      "Project Manager - Full Stack JS Developer",
+      "PACOME PERRICHOT",
+      "Full Stack Developer",
+      "GABRIEL DENAJAR",
+      "Full Stack Developer",
+      "HAKIMA BIDELHADJELA",
+      "MOA Assistant"
+    ]
+  }
+}

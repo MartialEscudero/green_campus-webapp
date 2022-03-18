@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Test</h1>
+    <h1>QR Code</h1>
   </div>
 </template>
 
 <script>
 export default {
   head: {
-    title: 'Accueil',
+    title: 'QR Code',
   }
 }
 </script>
