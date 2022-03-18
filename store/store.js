@@ -19,6 +19,7 @@ export const mutations = {
   },
 
   setLang(state, args) {
+    // En fonction de l'état du switch une langue est choisie et ajoutée au localStorage pour conserver le choix même une fois le navigateur fermé
     if (args === false) {
       state.lang = "fr"
       localStorage.setItem('lang', 'fr');
@@ -84,6 +85,8 @@ export const mutations = {
 }
 
 export const actions = {
+
+  // Récupère le fichier json contenant les traductions des données en "dur"
   getMultilingual({ commit }) {
     axios.get('/multilingual.json')
     .then((res) => {
@@ -128,6 +131,7 @@ export const actions = {
     }, 3000);
   },
 
+  // Récupère le sentier choisi
   async getSentier({ commit, state }, item) {
     await axios.get(strapi + 'sentiers?filters[UUID][$eq]=' + item + '&populate[0]=points_interet&populate[1]=GeoJSON&populate[2]=points_interet.Image&populate[3]=points_interet.Audio&populate[4]=Media' + '&locale=' + state.lang)
     .then((res) => {
@@ -138,6 +142,7 @@ export const actions = {
     })
   },
 
+  // Récupère le poi choisi
   async getPoi({ commit, state }, item) {
     await axios.get(strapi + 'points-interet?populate=%2A&filters[UUID][$eq]=' + item + '&locale=' + state.lang)
     .then((res) => {
