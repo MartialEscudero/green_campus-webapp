@@ -304,10 +304,20 @@ h2 {
 
   .card {
     margin-bottom: 40px;
-    height: 300px;
+    height: 250px;
+
+    & .media {
+      display: none;
+    }
 
     & .infos {
       position: initial;
+      width: 100%;
+      padding-left: 0;
+
+      & h3 {
+        text-align: center;
+      }
 
       & button {
         margin-bottom: 10px;
