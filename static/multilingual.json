@@ -29,6 +29,9 @@
       "LIRE PLUS",
       "LES IMAGES DU SENTIER"
     ],
+    "poi" : [
+      "DÉCOUVRIR LE SENTIER"
+    ],
     "qrcode" : [
       "SCAN QR CODE",
       "Utilise ton smartphone pour scanner QR Code sur ton chemin !",
@@ -83,6 +86,9 @@
       "POINTS OF INTEREST",
       "READ MORE",
       "IMAGES OF THE TRAIL"
+    ],
+    "poi" : [
+      "DISCOVER THE TRAIL"
     ],
     "qrcode" : [
       "SCAN QR CODE",
