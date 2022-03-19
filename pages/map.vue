@@ -225,6 +225,7 @@ export default {
     }
 
     & #markdown {
+      height: 50px;
       font-size: 11px;
       line-height: 15px;
     }
