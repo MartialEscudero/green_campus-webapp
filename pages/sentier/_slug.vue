@@ -313,6 +313,7 @@ h2 {
     & .infos {
       position: initial;
       width: 100%;
+      padding-left: 0;
 
       & h3 {
         text-align: center;
