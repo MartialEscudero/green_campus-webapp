@@ -12,7 +12,7 @@
       </p>
     </div>
     <div class="bloc">
-      <h2>{{multilingual.apropos[5]}}</h2>
+      <h2 class="h2-center">{{multilingual.apropos[5]}}</h2>
       <div class="container mx-auto md:grid md:gap-28 xl:grid-cols-4">
         <div class="text-center">
           <img class="mx-auto hover:scale-110 transition ease-in-out" src="~/assets/img/pdp/martial.png">
@@ -87,13 +87,19 @@ p {
 
 @media screen and (max-width: 640px) {
   h1 {
-    font-size: 24px;
+    text-align: center;
+    font-size: 25px;
   }
 
   h2 {
     font-size: 20px;
     margin-top: 30px;
     margin-bottom: 10px;
+  }
+
+  .h2-center {
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   .bloc {

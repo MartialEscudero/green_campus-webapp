@@ -29,7 +29,7 @@
                 </v-carousel-item>
               </v-carousel>
             </div>
-            <div>
+            <div class="desc">
               <h1>{{piSelected.attributes.Nom}}</h1>
               <vue-markdown id="markdown" class="text-justify" :source="piSelected.attributes.Description"></vue-markdown>
               <div v-if="piSelected.attributes.Audio.data">
@@ -41,7 +41,7 @@
           </div>
         </v-card-text>
         <v-card-text class="text-justify" v-if="$vuetify.breakpoint.smAndDown">
-          <div class="mx-auto md:grid md:gap-28 xl:grid-cols-2">
+          <div class="desc mx-auto md:grid md:gap-28 xl:grid-cols-2">
             <div>
               <h1>{{piSelected.attributes.Nom}}</h1>
               <vue-markdown id="markdown" class="text-justify" :source="piSelected.attributes.Description"></vue-markdown>
@@ -55,7 +55,7 @@
               <v-carousel
                 cycle
                 hide-delimiters
-                height="600"
+                height="400"
                 class="mt-20"
               >
                 <v-carousel-item
@@ -110,5 +110,12 @@ audio {
   display:block;
   margin:auto;
   text-align: center
+}
+
+@media screen and (max-width: 640px) {
+  h1 {
+    text-align: center;
+    font-size: 25px;
+  }
 }
 </style>

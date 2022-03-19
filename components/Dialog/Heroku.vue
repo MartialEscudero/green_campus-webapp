@@ -6,7 +6,7 @@
       persistent
     >
       <v-card>
-        <v-card-title class="text-h5 green lighten-3 uppercase font-weight-black justify-center ">
+        <v-card-title class="text-h6 green lighten-3 uppercase font-weight-black justify-center ">
           Le serveur se réveille !
         </v-card-title>
 

@@ -18,13 +18,11 @@
             <div v-if="!pi.attributes.Audio.data">
               <div v-for="img in pi.attributes.Image" :key="img.item">
                 <img :src="img[0].attributes.url" :alt="pi.attributes.Nom">
-                <!-- <span class="number" v-if="img.length > 1">+{{img.length}}</span> -->
               </div>
             </div>
             <div v-else>
               <div v-for="audio in pi.attributes.Audio" :key="audio.item">
                 <audio controls :src="audio[0].attributes.url"></audio>
-                <!-- <span class="number">+{{audio.length + pi.attributes.Image.data.length}}</span> -->
               </div>
             </div>
           </div>
@@ -51,7 +49,7 @@
         <v-carousel
           hide-delimiters
           cycle
-          height="600"
+          height="400"
         >
           <v-carousel-item
             v-for="(slide, i) in media"
@@ -124,52 +122,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.horizontal-scroll {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 500px;
-
-  & {
-    img {
-      max-height: 100%;
-    }
-  }
-}
-
-.outer {
-  display: flex;
-  flex: 1;
-  width: auto;
-  height: 100%;
-  padding: 0 20px;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.inner-content {
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  height: calc(100% - 40px);
-  border-radius: 5px;
-}
-
-.horizontal-scroll {
-  white-space: nowrap;
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-  width: 1em;
-  scrollbar-width: thin;
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background-color: #ADADAD;
-  scrollbar-width: thin;
-}
-
 #map { 
   height: 50vh;
 }
@@ -284,9 +236,62 @@ h2 {
   }
 }
 
+.horizontal-scroll {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 500px;
+
+  & {
+    img {
+      max-height: 100%;
+    }
+  }
+}
+
+.outer {
+  display: flex;
+  flex: 1;
+  width: auto;
+  height: 100%;
+  padding: 0 20px;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.inner-content {
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 40px);
+  border-radius: 5px;
+}
+
+.horizontal-scroll {
+  white-space: nowrap;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  width: 1em;
+  scrollbar-width: thin;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #ADADAD;
+  scrollbar-width: thin;
+}
+
 @media screen and (max-width: 640px) {
-  h1 { 
+  h1 {
+    text-align: center;
+    font-size: 35px;
     margin-bottom: 10px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 25px;
   }
 
   #map {
@@ -299,10 +304,20 @@ h2 {
 
   .card {
     margin-bottom: 40px;
-    height: 300px;
+    height: 250px;
+
+    & .media {
+      display: none;
+    }
 
     & .infos {
       position: initial;
+      width: 100%;
+      padding-left: 0;
+
+      & h3 {
+        text-align: center;
+      }
 
       & button {
         margin-bottom: 10px;
