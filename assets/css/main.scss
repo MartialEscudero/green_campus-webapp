@@ -18,6 +18,11 @@
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
+.container {
+  margin-right: auto; 
+  margin-left: auto; 
+}
+
 * {
   font-family: 'Roboto';
 }

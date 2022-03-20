@@ -1,7 +1,7 @@
 <template>
 <!-- Navbar -->
 <nav>
-  <div class="max-w-screen-2xl mx-auto px-4">
+  <div class="container mx-auto px-4">
     <div class="flex justify-between">
 
       <!-- Menu -->
