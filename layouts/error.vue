@@ -11,7 +11,7 @@
 
 export default {
   head: {
-    title: 'QR Code',
+    title: 'Error 404',
   }
 }
 </script>
