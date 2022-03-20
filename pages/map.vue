@@ -43,8 +43,10 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  head: {
-    title: 'Carte',
+  head() {
+    return {
+      title: this.multilingual.navbar ? this.multilingual.navbar[3] : 'Carte',
+    }
   },
   data: () => ({
     lines : {
@@ -108,7 +110,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('store',['sentiers'])
+    ...mapGetters('store',['sentiers','multilingual'])
   },
   async mounted() {
     await this.getSentiers();

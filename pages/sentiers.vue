@@ -30,8 +30,10 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
-  head: {
-    title: "Sentiers à proximité",
+  head() {
+    return {
+      title: this.multilingual.navbar ? this.multilingual.navbar[2] : 'Sentiers',
+    }
   },
   async created() {
     // Demande la géolocalisation
