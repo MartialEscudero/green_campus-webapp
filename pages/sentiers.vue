@@ -1,7 +1,7 @@
 <template>
   <div v-if="multilingual.sentiers" class="container">
     <h1>{{ multilingual.sentiers[1] }}</h1>
-    <div class="flex items-center mb-5">
+    <div class="flex flex-wrap items-center mb-5">
       <label class="label select-box">{{ multilingual.sentiers[2] }}</label>
       <select class="select-box" v-model="currentOrder">
         <option selected value="proche">{{ multilingual.sentiers[3] }}</option>

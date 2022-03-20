@@ -135,6 +135,9 @@ export default {
     border-radius: 40px;
     border: 5px solid rgba(6, 102, 100, 0.8);
   }
+  & #markdown {
+      color: #6d6d6d;
+  }
 }
 .card:hover {
   background: #d8d8d8;
