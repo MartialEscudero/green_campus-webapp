@@ -7,8 +7,8 @@
       <div v-if="$vuetify.breakpoint.smAndDown">
         <div v-if="multilingual.qrcode" id="mobile">
           <h1>{{multilingual.qrcode[0]}}</h1>
-          <p class="camera" v-if="camera == true">● {{multilingual.qrcode[4]}}</p>
-          <p class="camera" v-else>● {{multilingual.qrcode[5]}}</p>
+          <p class="camera active" v-if="camera == true">● {{multilingual.qrcode[4]}}</p>
+          <p class="camera inactive" v-else>● {{multilingual.qrcode[5]}}</p>
           <p class="error">{{ error }}</p>
           <qrcode-stream @decode="onDecode" @init="onInit" />
           <div v-if="poi" class="titleCard">
@@ -75,17 +75,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+#mobile {
+  height: calc(100vh - 150px);
+  position: relative;
+
+  & .qrcode-stream-wrapper {
+    height: 50%;
+  }
+
+  & .camera {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  & .active {
+      color: #3DBB49;
+  }
+
+  & .inactive {
+    color: #bd1616;
+  }
+}
 #mobile .error {
   font-weight: bold;
   color: rgb(124, 32, 32);
   text-align: center;
-}
-
-#mobile .camera {
-  color: #3DBB49;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 #mobile h1 {
@@ -100,7 +115,7 @@ export default {
 }
 
 #mobile .titleCard {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-right: auto;
   margin-left: auto;
   border-radius: 9px;
@@ -116,7 +131,7 @@ export default {
 }
 
 #mobile button {
-  margin-top: 100px;
+  margin-top: 50px;
   background: rgba(6, 102, 100, 0.8);
   border-radius: 20px;
   width: 260px;
