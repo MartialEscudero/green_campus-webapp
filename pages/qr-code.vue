@@ -151,7 +151,7 @@ export default {
   height: calc(100vh - 150px);
   position: relative;
 
-  & .qrcode-stream-wrapper {
+  & .qrcode-stream-wrapper, qrcode-stream-overlay, .qrcode-stream-overlay {
     height: 30%;
   }
 
@@ -186,7 +186,7 @@ export default {
 
   & .titleCard {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     margin-right: auto;
     margin-left: auto;
     border-radius: 9px;
@@ -202,7 +202,7 @@ export default {
   }
 
   & button {
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     background: rgba(6, 102, 100, 0.8);
     border-radius: 20px;
     width: 300px;
