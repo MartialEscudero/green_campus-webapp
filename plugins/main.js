@@ -16,7 +16,12 @@ import VueMarkdown from 'vue-markdown';
 // import style (<= Swiper 5.x)
 import 'swiper/css/swiper.css'
 
-Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+// https://github.com/gruhn/vue-qrcode-reader
+import VueQrcodeReader from "vue-qrcode-reader";
+
+Vue.use(VueQrcodeReader)
+
+Vue.use(VueAwesomeSwiper /* { default options with global component } */)
 Vue.use(Vue2Filters)
 
 delete L.Icon.Default.prototype._getIconUrl;
