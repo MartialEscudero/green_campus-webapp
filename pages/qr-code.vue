@@ -224,10 +224,4 @@ export default {
     color: #FFFFFF;
   }
 }
-
-@media screen and (min-width: 1699px) {
-  .infos {
-
-  }
-}
 </style>
