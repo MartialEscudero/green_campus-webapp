@@ -6,11 +6,6 @@
         <div v-if="multilingual.qrcode">
           <div class="container">
             <h1>{{multilingual.qrcode[0]}}</h1>
-            <!-- <div class="mx-auto md:grid md:gap-28 xl:grid-cols-2">
-              <div>
-              </div>
-              <div></div>
-            </div> -->
             <div class="infos">
               <v-text-field
                 rounded
@@ -111,7 +106,7 @@ export default {
 <style lang="scss" scoped>
 #pc {
   position: relative;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 96px);
   
   & h1 {
     font-style: normal;
@@ -142,6 +137,14 @@ export default {
     color: white;
     text-align: justify;
   }
+
+  & img {
+    -webkit-user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 }
 
 #mobile {
@@ -149,7 +152,7 @@ export default {
   position: relative;
 
   & .qrcode-stream-wrapper {
-    height: 50%;
+    height: 30%;
   }
 
   & .camera {
@@ -183,6 +186,7 @@ export default {
 
   & .titleCard {
     margin-top: 30px;
+    margin-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
     border-radius: 9px;
@@ -198,7 +202,7 @@ export default {
   }
 
   & button {
-    margin-top: 30px;
+    margin-bottom: 30px;
     background: rgba(6, 102, 100, 0.8);
     border-radius: 20px;
     width: 300px;

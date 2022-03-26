@@ -107,12 +107,12 @@ h1 {
   color: #4b4b4b;
   margin: 0;
   margin-right: 20px;
-  padding: 10px;
+  padding: 4px 8px;
 }
 
 .label {
   margin: 0;
-  padding: 10px 0px 10px 10px;
+  padding: 4px 0px 4px 8px;
   border-radius: 5px 0px 0px 5px;
 }
 
@@ -129,8 +129,26 @@ h1 {
 }
 
 @media screen and (max-width: 640px) {
-  .container {
+  h1 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
     padding: 0;
   }
+
+  .select-box {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .localisation-on, .localisation-off {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .label {
+    padding: 3px 0px 3px 6px;
+  }
+
 }
 </style>
