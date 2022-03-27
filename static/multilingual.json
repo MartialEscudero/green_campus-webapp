@@ -36,9 +36,10 @@
       "SCAN QR CODE",
       "Utilise ton smartphone pour scanner QR Code sur ton chemin !",
       "SAISIR LE CODE DU POINT D’INTÉRÊT",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. ",
+      "Si vous êtes sur PC pas panique ! Entrez le code correspondant au point d’intérêt et vous allez être redirigé vers sa page de présentation. Mais on vous conseille quand même d’utiliser votre smartphone pour scanner les QR-Code tout en parcourant le sentier. À vous de jouer !",
       "Caméra active",
       "Caméra inactive",
+      "Scannez un QR Code",
       "DÉCOUVRIR CE POINT D'INTÉRÊT"
     ],
     "apropos" : [
@@ -94,9 +95,10 @@
       "SCAN QR CODE",
       "Use your smartphone to scan the QR code on your way !",
       "ENTER THE CODE OF THE POINT OF INTEREST",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. ",
+      "If you are on a PC don't panic! Enter the code corresponding to the point of interest and you will be redirected to its presentation page. But we still advise you to use your smartphone to scan the QR-Codes while walking along the path. It's up to you!",
       "Active camera",
       "Inactive camera",
+      "Scan a QR Code",
       "DISCOVER THIS POINT OF INTEREST"
     ],
     "apropos" : [

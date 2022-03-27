@@ -1,7 +1,7 @@
 <template>
   <div v-if="multilingual.sentiers" class="container">
     <h1>{{ multilingual.sentiers[1] }}</h1>
-    <div class="flex flex-wrap items-center mb-5">
+    <div class="all flex flex-wrap items-center mb-5">
       <label class="label select-box">{{ multilingual.sentiers[2] }}</label>
       <select class="select-box" v-model="currentOrder">
         <option selected value="proche">{{ multilingual.sentiers[3] }}</option>
@@ -30,8 +30,10 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
-  head: {
-    title: "Sentiers à proximité",
+  head() {
+    return {
+      title: this.multilingual.navbar ? this.multilingual.navbar[2] : 'Sentiers',
+    }
   },
   async created() {
     // Demande la géolocalisation
@@ -105,30 +107,53 @@ h1 {
   color: #4b4b4b;
   margin: 0;
   margin-right: 20px;
-  padding: 10px;
+  padding: 4px 8px;
 }
 
 .label {
   margin: 0;
-  padding: 10px 0px 10px 10px;
+  padding: 4px 0px 4px 8px;
   border-radius: 5px 0px 0px 5px;
 }
 
 .localisation-on {
   color: #2c8634;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 
 .localisation-off {
   color: #e22911;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 
 @media screen and (max-width: 640px) {
-  .container {
+  h1 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
     padding: 0;
+  }
+
+  .select-box {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .localisation-on, .localisation-off {
+    font-size: 12px;
+    text-align: left;
+    padding: 0px 2px;
+  }
+
+  .label {
+    padding: 3px 0px 3px 6px;
+  }
+
+  .all {
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 </style>

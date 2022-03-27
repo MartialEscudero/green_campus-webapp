@@ -43,8 +43,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  head: {
-    title: 'À propos',
+  head() {
+    return {
+      title: this.multilingual.navbar ? this.multilingual.navbar[4] : 'À propos',
+    }
   },
   computed: {
     ...mapGetters('store',['multilingual'])
@@ -103,8 +105,8 @@ p {
   }
 
   .bloc {
-    margin-right: 0;
-    margin-left: 0
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
   .bloc:nth-child(3) {

@@ -13,7 +13,7 @@
                     <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                     <h1>{{ sentier.attributes.Nom }}</h1>
                   </div>
-                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
+                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,100) + '...'" ></vue-markdown>
                 </div>
                 </Nuxt-link>
               </div>
@@ -29,7 +29,7 @@
                 <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                 <h1>{{ sentier.attributes.Nom }}</h1>
               </div>
-              <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
+              <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,100) + '...'" ></vue-markdown>
             </div>
             </Nuxt-link>
           </div>
@@ -43,8 +43,10 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  head: {
-    title: 'Carte',
+  head() {
+    return {
+      title: this.multilingual.navbar ? this.multilingual.navbar[3] : 'Carte',
+    }
   },
   data: () => ({
     lines : {
@@ -108,7 +110,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('store',['sentiers'])
+    ...mapGetters('store',['sentiers','multilingual'])
   },
   async mounted() {
     await this.getSentiers();
@@ -184,10 +186,8 @@ export default {
     line-height: 25px;
     text-align: justify;
     color: #8D8D8D;
-    text-overflow: ellipsis; 
     display: block; 
-    overflow: hidden; 
-    white-space: nowrap;
+
   }
 }
 
@@ -211,8 +211,8 @@ export default {
   .card {
     padding: 20px;
     border-radius: 9px;
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 15px;
+    margin-left: 15px;
     height: 120px;
 
     & .line {

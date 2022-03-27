@@ -2,7 +2,7 @@
   <Nuxt-link :to="'/sentier/' + sentier.attributes.UUID">
     <div class="card h-full hover:scale-105 transition ease-in-out">
       <div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
-        <div v-bind:id="index" class="MACARTE hidden md:block z-0"></div>
+        <div v-bind:id="index" class="macarte hidden md:block z-0"></div>
           <div>
             <div class="flex items-center">
               <v-icon class="icon">mdi-map-marker</v-icon>
@@ -40,7 +40,7 @@ export default {
     buildMap() {
       try {
         // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes sur la même page)
-        var map = L.map(`${this.index}`).setView([45.837, 1.239], 16);
+        var map = L.map(`${this.index}`).setView([45.837, 1.239], 14);
         L.tileLayer(
           "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA",
           {
@@ -130,17 +130,25 @@ export default {
     text-align: justify;
     color: #8d8d8d;
   }
-  & .MACARTE {
+  & .macarte {
     height: 25vh;
     border-radius: 40px;
     border: 5px solid rgba(6, 102, 100, 0.8);
   }
   & #markdown {
-      color: #6d6d6d;
+    color: #6d6d6d;
   }
 }
 .card:hover {
   background: #d8d8d8;
   cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .card {
+    margin-right: 15px;
+    margin-left: 15px;;
+  }
+
 }
 </style>
