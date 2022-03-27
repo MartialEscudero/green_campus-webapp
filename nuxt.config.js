@@ -9,8 +9,6 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: 'Découverte des sentiers et des points d\'intérêt du parc de la Borie' },
-      { name: 'apple-mobile-web-app-capable', content: 'yes' },
-      { name: 'mobile-web-app-capable', content: 'yes' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
