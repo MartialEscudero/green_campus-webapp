@@ -6,7 +6,7 @@
       <div class="z-0" id="map"></div>
       <client-only>
       <div>
-        <vue-markdown id="markdown" class="text-justify" :source="sentier.Description"></vue-markdown>
+        <vue-markdown id="markdown" class="vm text-justify" :source="sentier.Description"></vue-markdown>
       </div>
       </client-only>
     </div>
@@ -299,6 +299,11 @@ h2 {
   }
 
   .desc {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  .vm {
     margin-right: 15px;
     margin-left: 15px;
   }
