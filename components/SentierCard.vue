@@ -40,7 +40,7 @@ export default {
     buildMap() {
       try {
         // on crée la carte (on utilise l'index comme id pour afficher plusieurs cartes sur la même page)
-        var map = L.map(`${this.index}`).setView([45.837, 1.239], 15);
+        var map = L.map(`${this.index}`).setView([45.837, 1.239], 14);
         L.tileLayer(
           "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibWFydGlhbHRpYyIsImEiOiJja3pobDM5NHUxeGRlMnVvNm5pbmtwZ2E0In0.YQBFj39fOIGw_4ZnQQs6KA",
           {
@@ -142,5 +142,13 @@ export default {
 .card:hover {
   background: #d8d8d8;
   cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .card {
+    margin-right: 15px;
+    margin-left: 15px;;
+  }
+
 }
 </style>

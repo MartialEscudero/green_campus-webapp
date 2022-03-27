@@ -31,7 +31,6 @@
           <p class="camera active" v-if="camera == true">● {{multilingual.qrcode[4]}}</p>
           <p class="camera inactive" v-else>● {{multilingual.qrcode[5]}}</p>
           <p class="error">{{ error }}</p>
-          <qrcode-stream @decode="onDecode" @init="onInit" />
           <div v-if="poi" class="titleCard">
             <span v-if="poi.length == 0">{{multilingual.qrcode[6]}}</span>
             <span v-else>{{poi.Nom.slice(0,25) + "..."}}</span>
@@ -39,6 +38,7 @@
           <button v-if="poi.length != 0" class="transition ease-in-out" >
             <Nuxt-link class="btn" :to="'/point-interet/' + poi.UUID">{{multilingual.qrcode[7]}}</Nuxt-link>
           </button>
+          <qrcode-stream class="mt-20" @decode="onDecode" @init="onInit" />
         </div>
       </div>
     </div>
@@ -130,7 +130,7 @@ export default {
   }
 
   & .infos {
-    width: 30%;
+    width: 25%;
     position: absolute;
     bottom: 20%;
     z-index: 99;
@@ -186,7 +186,7 @@ export default {
 
   & .titleCard {
     margin-top: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
     border-radius: 9px;
@@ -202,7 +202,7 @@ export default {
   }
 
   & button {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
     background: rgba(6, 102, 100, 0.8);
     border-radius: 20px;
     width: 300px;

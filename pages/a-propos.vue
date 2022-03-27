@@ -105,8 +105,8 @@ p {
   }
 
   .bloc {
-    margin-right: 0;
-    margin-left: 0
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
   .bloc:nth-child(3) {

@@ -8,10 +8,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'description', content: 'Découverte des sentiers et des points d\'intérêt du parc de la Borie' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon-precomposed', sizes: "512x512", href: '/icon.png' },
     ]
   },
 
@@ -54,10 +55,19 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
-    icon: false,
     manifest: {
-      name: 'Green Campus',
-      lang: 'fr'
+      name: 'Green Campus - Les sentiers de la Borie',
+      short_name: 'Green Campus',
+      description: 'Découverte des sentiers et des points d\'intérêt du parc de la Borie', 
+      lang: 'fr',
+      background_color:'#FFFFFF',
+    },
+    meta: {
+      title: 'Green Campus',
+      author: 'LPMI Groupe 1',
+    },
+    icon: {
+      source: '/icon.png'
     }
   },
 
