@@ -13,18 +13,35 @@
       </div>
 
       <!-- Desktop menu-->
-      <div v-if="multilingual.navbar" class="hidden md:flex items-center space-x-1.5">
-        <Nuxt-link to="/" class="px-3 py-2 underline-link">{{multilingual.navbar[0]}}</Nuxt-link>
-              
-        <Nuxt-link to="/sentiers" class="px-3 py-2 underline-link">{{multilingual.navbar[2]}}</Nuxt-link>
-        <Nuxt-link to="/map" class="px-3 py-2 underline-link">{{multilingual.navbar[3]}}</Nuxt-link>
-        <Nuxt-link to="/a-propos" class="px-3 py-2 underline-link">{{multilingual.navbar[4]}}</Nuxt-link>
-        <v-switch 
-          v-model="langswitch" 
-          :label="`${langswitch ? 'FR' : 'EN'}`"
-          @click="switchLang()"
-          color="#066664"
-        ></v-switch>
+      <div v-if="this.$route.name === 'index'">
+        <div v-if="multilingual.navbar" class="hidden md:flex items-center space-x-1.5">
+          <Nuxt-link to="/" class="text-white px-3 py-2 underline-link">{{multilingual.navbar[0]}}</Nuxt-link>
+          <Nuxt-link to="/qr-code" class="px-3 py-2 underline-link">{{multilingual.navbar[1]}}</Nuxt-link>
+          <Nuxt-link to="/sentiers" class="px-3 py-2 underline-link">{{multilingual.navbar[2]}}</Nuxt-link>
+          <Nuxt-link to="/map" class="px-3 py-2 underline-link">{{multilingual.navbar[3]}}</Nuxt-link>
+          <Nuxt-link to="/a-propos" class="px-3 py-2 underline-link">{{multilingual.navbar[4]}}</Nuxt-link>
+          <v-switch 
+            v-model="langswitch" 
+            :label="`${langswitch ? 'FR' : 'EN'}`"
+            @click="switchLang()"
+            color="#066664"
+          ></v-switch>
+        </div>
+      </div>
+      <div v-else>
+        <div v-if="multilingual.navbar" class="navbar hidden md:flex items-center space-x-1.5">
+          <Nuxt-link to="/" class="px-3 py-2 underline-link">{{multilingual.navbar[0]}}</Nuxt-link>
+          <Nuxt-link to="/qr-code" class="px-3 py-2 underline-link">{{multilingual.navbar[1]}}</Nuxt-link>
+          <Nuxt-link to="/sentiers" class="px-3 py-2 underline-link">{{multilingual.navbar[2]}}</Nuxt-link>
+          <Nuxt-link to="/map" class="px-3 py-2 underline-link">{{multilingual.navbar[3]}}</Nuxt-link>
+          <Nuxt-link to="/a-propos" class="px-3 py-2 underline-link">{{multilingual.navbar[4]}}</Nuxt-link>
+          <v-switch 
+            v-model="langswitch" 
+            :label="`${langswitch ? 'FR' : 'EN'}`"
+            @click="switchLang()"
+            color="#066664"
+          ></v-switch>
+        </div>
       </div>
 
       <!-- Mobile button -->
@@ -132,8 +149,8 @@ svg {
 }
 
 .underline-link.nuxt-link-exact-active {
-  color: #066664;
-  border-bottom: 2px solid #066664;
+  color: white;
+  border-bottom: 2px solid white;
 }
 
 .v-application a.white-link  {
@@ -141,6 +158,19 @@ svg {
 }
 
 .underline-link  {
+  color: white;
+}
+
+.navbar .underline-link.nuxt-link-exact-active {
+  color: #066664;
+  border-bottom: 2px solid #066664;
+}
+
+.navbar .v-application a.white-link  {
+  color: white;
+}
+
+.navbar .underline-link  {
   color: #066664;
 }
 
