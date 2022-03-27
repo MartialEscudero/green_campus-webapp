@@ -54,10 +54,14 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
-    icon: false,
     manifest: {
-      name: 'Green Campus',
-      lang: 'fr'
+      name: 'Green Campus - Les sentiers de la Borie',
+      short_name: 'Green Campus',
+      description: 'Découverte des sentiers et des points d\'intérêt du parc de la Borie', 
+      lang: 'fr',
+    },
+    meta: {
+        favicon: false,
     }
   },
 
