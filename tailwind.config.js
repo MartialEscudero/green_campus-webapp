@@ -1,5 +1,11 @@
 module.exports = {
-  theme: {},
+  theme: {
+      extend: {
+          colors: {
+              'green-campus': '#066664',
+          },
+      }
+  },
   plugins: [],
   content: [
     "./components/**/*.{js,vue,ts}",

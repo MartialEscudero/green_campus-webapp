@@ -1,6 +1,6 @@
 <template>
 <!-- Navbar -->
-<nav>
+<nav class="z-10">
   <div class="container mx-auto px-4">
     <div class="flex justify-between">
 
@@ -15,7 +15,7 @@
       <!-- Desktop menu-->
       <div v-if="multilingual.navbar" class="hidden md:flex items-center space-x-1.5">
         <Nuxt-link to="/" class="px-3 py-2 underline-link">{{multilingual.navbar[0]}}</Nuxt-link>
-        <Nuxt-link to="/qr-code" class="px-3 py-2 underline-link">{{multilingual.navbar[1]}}</Nuxt-link>
+              
         <Nuxt-link to="/sentiers" class="px-3 py-2 underline-link">{{multilingual.navbar[2]}}</Nuxt-link>
         <Nuxt-link to="/map" class="px-3 py-2 underline-link">{{multilingual.navbar[3]}}</Nuxt-link>
         <Nuxt-link to="/a-propos" class="px-3 py-2 underline-link">{{multilingual.navbar[4]}}</Nuxt-link>
