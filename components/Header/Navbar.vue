@@ -52,12 +52,14 @@
         <a @click="showMobileMenu = !showMobileMenu"><Nuxt-link to="/map" class="block text-center py-5 white-link font-sans uppercase text-2xl font-bold">{{multilingual.navbar[3]}}</Nuxt-link></a>
         <a @click="showMobileMenu = !showMobileMenu"><Nuxt-link to="/a-propos" class="block text-center py-5 white-link font-sans uppercase text-2xl font-bold">{{multilingual.navbar[4]}}</Nuxt-link></a>
         <div class="d-flex justify-center font-bold pb-5">
-          <v-switch 
-            v-model="langswitch" 
-            :label="`${langswitch ? 'FR' : 'EN'}`"
-            @click="switchLang()"
-            color="#066664"
-          ></v-switch>
+          <a @click="showMobileMenu = !showMobileMenu">
+            <v-switch 
+              v-model="langswitch" 
+              :label="`${langswitch ? 'FR' : 'EN'}`"
+              @click="switchLang()"
+              color="#066664"
+            ></v-switch>
+          </a>
         </div>
       </div></transition>
     </div>

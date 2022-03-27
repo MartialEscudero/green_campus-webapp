@@ -143,4 +143,12 @@ export default {
   background: #d8d8d8;
   cursor: pointer;
 }
+
+@media screen and (max-width: 640px) {
+  .card {
+    margin-right: 12px;
+    margin-left: 12px;;
+  }
+
+}
 </style>

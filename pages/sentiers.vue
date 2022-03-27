@@ -1,7 +1,7 @@
 <template>
   <div v-if="multilingual.sentiers" class="container">
     <h1>{{ multilingual.sentiers[1] }}</h1>
-    <div class="flex flex-wrap items-center mb-5">
+    <div class="all flex flex-wrap items-center mb-5">
       <label class="label select-box">{{ multilingual.sentiers[2] }}</label>
       <select class="select-box" v-model="currentOrder">
         <option selected value="proche">{{ multilingual.sentiers[3] }}</option>
@@ -119,13 +119,13 @@ h1 {
 .localisation-on {
   color: #2c8634;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 
 .localisation-off {
   color: #e22911;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 
 @media screen and (max-width: 640px) {
@@ -142,13 +142,18 @@ h1 {
   }
 
   .localisation-on, .localisation-off {
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
+    padding: 0px 2px;
   }
 
   .label {
     padding: 3px 0px 3px 6px;
   }
 
+  .all {
+    margin-right: 12px;
+    margin-left: 12px;
+  }
 }
 </style>

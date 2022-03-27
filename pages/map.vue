@@ -13,7 +13,7 @@
                     <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                     <h1>{{ sentier.attributes.Nom }}</h1>
                   </div>
-                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
+                  <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,100) + '...'" ></vue-markdown>
                 </div>
                 </Nuxt-link>
               </div>
@@ -29,7 +29,7 @@
                 <div class="line mr-5" :style="{'background-color': sentier.attributes.Couleur}"></div>
                 <h1>{{ sentier.attributes.Nom }}</h1>
               </div>
-              <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,250) + '...'" ></vue-markdown>
+              <vue-markdown id="markdown" class="mt-3" :source="sentier.attributes.Description.slice(0,100) + '...'" ></vue-markdown>
             </div>
             </Nuxt-link>
           </div>
@@ -186,10 +186,8 @@ export default {
     line-height: 25px;
     text-align: justify;
     color: #8D8D8D;
-    text-overflow: ellipsis; 
     display: block; 
-    overflow: hidden; 
-    white-space: nowrap;
+
   }
 }
 
