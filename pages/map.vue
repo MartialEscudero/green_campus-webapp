@@ -211,8 +211,8 @@ export default {
   .card {
     padding: 20px;
     border-radius: 9px;
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 15px;
+    margin-left: 15px;
     height: 120px;
 
     & .line {

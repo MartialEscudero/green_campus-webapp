@@ -152,8 +152,8 @@ h1 {
   }
 
   .all {
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 </style>

@@ -29,7 +29,7 @@
           <div class="infos">
             <div class="text">
               <h3>{{pi.attributes.Nom}}</h3>
-              <vue-markdown v-if="pi.attributes.Description" id="markdown" class="text-justify" :source="pi.attributes.Description.slice(0,250) + '...'"></vue-markdown>
+              <vue-markdown v-if="pi.attributes.Description" id="markdown" class="text-justify" :source="pi.attributes.Description.slice(0,150) + '...'"></vue-markdown>
             </div>
             <button class="transition ease-in-out" @click="piDialog = true, piSelected = pi">{{multilingual.sentier[1]}}</button>
           </div>         
@@ -298,6 +298,11 @@ h2 {
     margin-bottom: 15px;
   }
 
+  .desc {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
   .desc vue-markdown {
     height: 100%;
   }
@@ -305,6 +310,8 @@ h2 {
   .card {
     margin-bottom: 40px;
     height: 250px;
+    margin-right: 15px;
+    margin-left: 15px;
 
     & .media {
       display: none;

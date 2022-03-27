@@ -146,8 +146,8 @@ export default {
 
 @media screen and (max-width: 640px) {
   .card {
-    margin-right: 12px;
-    margin-left: 12px;;
+    margin-right: 15px;
+    margin-left: 15px;;
   }
 
 }
