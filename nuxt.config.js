@@ -61,6 +61,9 @@ export default {
       description: 'Découverte des sentiers et des points d\'intérêt du parc de la Borie', 
       lang: 'fr',
       background_color:'#FFFFFF',
+      theme_color: "#066664",
+      display: "fullscreen",
+      start_url: "/"
     },
     meta: {
       title: 'Green Campus',

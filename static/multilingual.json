@@ -9,11 +9,11 @@
       "À propos"
     ],
     "accueil" : [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis, non volutpat nibh mattis non. Praesent ac dolor nisl. Morbi leo quam, dictum id turpis vitae, euismod blandit nibh. Phasellus ornare quis nisi nec hendrerit. Vivamus nec tristique quam, quis auctor dolor. Pellentesque vel lorem rhoncus ante.",
+      "Le parc de la Borie est un espace vert de la ville de Limoges, d'une superficie d'environ seize hectares. Jouxtant le campus universitaire de la Borie, qui accueille notamment la faculté des sciences et techniques, le Centre de droit et d’économie du sport et l'IUT du Limousin, il s'agit d'un des plus grands espaces verts publics de la commune, dont la propriété est partagée entre la mairie et l'université de Limoges.",
       "DÉCOUVRIR LES SENTIERS",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.",
+      "De multiples sentiers, organisés par thématique, sont présents dans le parc de La Borie. Choisissez dès maintenant votre prochaine promenade !",
       "SCANNER UN QR CODE",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
+      "Des QR codes sont disséminés dans le parc. Scannez les pour obtenir des informations sur la faune et la flore locales."
     ],
     "sentiers" : [
       "Sentiers à proximité",
@@ -68,11 +68,11 @@
       "About"
     ],
     "accueil" : [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis, non volutpat nibh mattis non. Praesent ac dolor nisl. Morbi leo quam, dictum id turpis vitae, euismod blandit nibh. Phasellus ornare quis nisi nec hendrerit. Vivamus nec tristique quam, quis auctor dolor. Pellentesque vel lorem rhoncus ante.",
-      "DDISCOVER THE TRAILS",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl.",
+      "The Parc de la Borie is a green space in the city of Limoges, with a surface area of approximately 16 hectares. Adjacent to the Borie university campus, which houses the Faculty of Science and Technology, the Centre for Law and Sports Economics and the Limousin IUT, it is one of the largest public green spaces in the city, the ownership of which is shared between the city council and the University of Limoges.",
+      "DISCOVER THE TRAILS",
+      "There are many trails in the park of La Borie, organised by theme. Choose your next walk now!",
       "SCAN A QR CODE",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere rhoncus felis,  non volutpat nibh mattis non. Praesent ac dolor nisl."
+      "QR codes are scattered throughout the park. Scan them for information on the local flora and fauna."
     ],
     "sentiers" : [
       "Nearby trails",
