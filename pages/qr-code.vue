@@ -38,7 +38,7 @@
           <button v-if="poi.length != 0" class="transition ease-in-out" >
             <Nuxt-link class="btn" :to="'/point-interet/' + poi.UUID">{{multilingual.qrcode[7]}}</Nuxt-link>
           </button>
-          <qrcode-stream @decode="onDecode" @init="onInit" />
+          <qrcode-stream class="mt-20" @decode="onDecode" @init="onInit" />
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@ export default {
 
   & .titleCard {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
     border-radius: 9px;
