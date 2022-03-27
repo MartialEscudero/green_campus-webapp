@@ -33,7 +33,7 @@
 
           <div class="relative">
             <div class="mr-32 mt-10">
-              <p class="xl:w-auto lg:w-96 md:w-72 text-justify font-medium">{{multilingual.accueil[0]}}</p>
+              <p class="xl:w-auto lg:w-96 md:w-72 text-justify font-medium text-grey-text">{{multilingual.accueil[0]}}</p>
             </div>
           </div>
 
@@ -47,7 +47,7 @@
                   width="360px"
                   color="white"
                   class="ml-3"
-                ><img class="w-10 ml-5" src="~/assets/img/bloc/noun-qr-code.svg" alt=""><p class="m-5">{{multilingual.accueil[3]}}</p>
+                ><img class="w-10 ml-5" src="~/assets/img/bloc/noun-qr-code.svg" alt=""><p class="m-5 text-green-campus">{{multilingual.accueil[3]}}</p>
                 </v-btn>
               </Nuxt-link>
               <p class="w-96 mt-5 text-white text-justify font-medium">{{multilingual.accueil[4]}}</p>
@@ -58,12 +58,12 @@
     </div>
 
     <!-- Mobile -->
-    <div class="md:hidden m-7">
+    <div class="md:hidden m-7 overflow-hidden">
       <div>
         <img class="w-52" src="~/assets/img/bloc/green-campus.svg" alt="">
       </div>
       <div>
-        <p class="mr-12 mt-7 text-justify font-medium text-sm">{{multilingual.accueil[0]}}</p>
+        <p class="mr-10 mt-7 text-justify font-medium text-sm text-grey-text">{{multilingual.accueil[0]}}</p>
       </div>
       <div>
         <div>
@@ -71,7 +71,7 @@
         </div>
         <div class="grid grid-cols-2 justify-items-end">
           <div><img class="-mt-10 ml-14" src="~/assets/img/bloc/noun-arrow.svg" alt=""></div>
-          <div class="mt-12 h-20 w-20 z-10">
+          <div class="mt-10 h-20 w-20 z-10">
             <Nuxt-link to='/sentiers'>
               <v-btn
                   rounded

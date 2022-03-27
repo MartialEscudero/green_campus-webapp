@@ -3,6 +3,7 @@ module.exports = {
       extend: {
           colors: {
               'green-campus': '#066664',
+              'grey-text' : '#8D8D8D',
           },
       }
   },
